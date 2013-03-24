@@ -9,7 +9,6 @@ export USER
 alias np='notepad'
 alias npp='notepad /p'
 alias ie='"/cygdrive/c/program files/internet explorer/iexplore.exe"'
-alias cdfb='dir="$(findibatch)" && cd "$dir"'
 alias cdd='cd "$DESKTOP"'
 
 alias ll='ls -l -h'
@@ -55,86 +54,6 @@ cdc() {
 
 cj() {
     cd "$(cygpath -w "$@")"
-}
-
-cdclient() {
-    saveifs="$IFS"
-    IFS=""
-    clientpath="$(findclient $@)"
-    if [ "$clientpath" = "$(echo $clientpath | sed 1q)" ]; then
-        cd "$clientpath"
-    else
-        echo "FAIL" 1>&2
-        echo $clientpath 1>&2
-    fi
-    IFS="$saveifs"
-    unset saveifs
-    unset clientpath
-}
-
-cdproj() {
-    projpath="$(findproj $@)"
-    if [ "$?" = 0 ]; then
-        cd "$projpath"
-    fi 
-    unset projpath
-}
-
-cdjob() {
-    jobpath="$(findjob $@)"
-    if [ "$?" = 0 ]; then
-        cd "$jobpath"
-    fi 
-    unset jobpath
-}
-
-cdbb() {
-    str="$@"
-    len=${#str}
-    case $len in 
-      0)
-        cd "/cygdrive/u/SHARED/GENERAL/_BLOWBACKS/"
-        ;;
-      4)
-        projn=$(date '+%y%m')$str"03"
-        cd "/cygdrive/u/SHARED/GENERAL/_BLOWBACKS/$projn"
-        ;;
-      5)
-        projn=$(date '+%y%m')$str"03"
-        cd "/cygdrive/u/SHARED/GENERAL/_BLOWBACKS/$projn"
-        ;;
-      6)
-        projn=$(date '+%y')$str"03"
-        cd "/cygdrive/u/SHARED/GENERAL/_BLOWBACKS/$projn"
-        ;;
-      7)
-        projn=$(date '+%y')$str"03"
-        cd "/cygdrive/u/SHARED/GENERAL/_BLOWBACKS/$projn"
-        ;;
-      8)
-        projn=$str"03"
-        cd "/cygdrive/u/SHARED/GENERAL/_BLOWBACKS/$projn"
-        ;;
-      9)
-        projn=$str"03"
-        cd "/cygdrive/u/SHARED/GENERAL/_BLOWBACKS/$projn"
-        ;;
-      10)
-        projn=$str
-        cd "/cygdrive/u/SHARED/GENERAL/_BLOWBACKS/$projn"
-        ;;
-      11)
-        projn=$str
-        cd "/cygdrive/u/SHARED/GENERAL/_BLOWBACKS/$projn"
-        ;;
-      *)
-        false
-        ;; 
-    esac
-
-    unset str
-    unset len
-    unset projn
 }
 
 alias pacl='cygcheck -l'
