@@ -146,7 +146,7 @@ alias cdd='cd $HOME/Desktop'
 _BASH_CONFIGDIR="$HOME/.config/bash"
 _BASH_OS_CONFIGDIR="$_BASH_CONFIGDIR/osrc"
 _BASH_DIST_CONFIGDIR="$_BASH_CONFIGDIR/distrc"
-_BASH_LOCAL_CONFIGDIR="$_BASH_CONFIGDIR/localrc"
+_BASH_LOCAL_CONFIGDIR="$HOME/.config/bash_local"
 
 case "$(uname)" in
     ARCH)
@@ -321,8 +321,6 @@ h() {
 mkcd() {
     mkdir -p "$1" && cd "$1"
 }
-
-alias sshhome='ssh noah@24.18.128.167'
 
 carry() {
 
