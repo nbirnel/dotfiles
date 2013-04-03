@@ -6,8 +6,9 @@ function! PlainText()
   \zg to add to dictionary, zug to undo\zg to add to dictionary, zug to undo\n
   \zw to mark as incorrect'\zw to mark as incorrect"
 
+    set nospell
+
     setlocal statusline=Spelling\ Help
-    setlocal nospell
     setlocal buftype=nofile
     setlocal bufhidden=hide
     setlocal noswapfile
@@ -22,6 +23,6 @@ function! PlainText()
     filetype indent off
     setlocal noautoindent
     setlocal nosmartindent
-    setlocal spell spelllang=en_us
+    setlocal spelllang=en_us
     setlocal spellfile=teris.add
 endfunction
