@@ -70,10 +70,6 @@ paco() {
 
 PAGER="/usr/bin/less -isrRX" && export PAGER
 
-phone() {
-    grep -i -- "$@" ~/teris-phone.csv
-}
-
 mkdest() {
     if [ $# -gt 0 ]; then
         mkdir -p "$@" && cd "$@" || return 1
@@ -92,7 +88,6 @@ robo() {
     sed 's/\r *[0-9.%]*//g' "tmp-$log" | u2d >"$log" && \
     rm -f "tmp-$log")
 }
-
 
 #FIXME it fails on the space
 #alias xl='/cygdrive/c/Program Files/Microsoft Office/Office14/EXCEL.EXE'

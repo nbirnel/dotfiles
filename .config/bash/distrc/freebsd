@@ -15,7 +15,7 @@ pacl() {
 
 pacr() {
     pkgdir=/var/db/pkg
-    pkg_delete -i $(ls -d "$pkgdir/$1-"*)
+    sudo pkg_delete -i $(ls -d "$pkgdir/$1-"*)
     unset _pkgdir
 }
 

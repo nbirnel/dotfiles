@@ -322,8 +322,6 @@ mkcd() {
     mkdir -p "$1" && cd "$1"
 }
 
-alias sshhome='ssh noah@24.18.128.167'
-
 carry() {
 
     argc=0

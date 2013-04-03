@@ -31,8 +31,8 @@ fi
 
 # In case everything goes wrong, we at least fall back to a plain xterm
 
-failsafe="uxterm -ls -T Failsafe -geometry 80x24-0-0"
-trap "exec $failsafe" EXIT SIGHUP SIGINT SIGPIPE SIGTERM SIGIO
+#failsafe="uxterm -ls -T Failsafe -geometry 80x24-0-0"
+#trap "exec $failsafe" EXIT SIGHUP SIGINT SIGPIPE SIGTERM SIGIO
 
 
 # Some bash (1 and 2) settings to avoid trouble on a
@@ -95,5 +95,4 @@ while :; do
     /usr/local/bin/dwm 2>>.dwm_log
 done  &
 
-/usr/local/bin/dwmstatus
-
+/usr/local/bin/dwmstatus || uxterm -ls -T Failsafe -geometry 80x24-0-0
