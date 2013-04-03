@@ -16,6 +16,7 @@ function! PlainText()
     silent 0put =s:help
 
     wincmd k
+    syntax off
     setlocal textwidth=78
     setlocal filetype=text
     filetype indent off
