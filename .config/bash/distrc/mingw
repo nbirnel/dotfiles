@@ -34,7 +34,7 @@ phone() {
     grep -i -- "$@" ~/teris-phone.csv
 }
 
-umask 0133
+umask 0022
 
 myip() {
     ipconfig | sed -n 's/^\s*IPv4 Address[. ]*: *//p'
