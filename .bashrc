@@ -54,7 +54,7 @@ _prompt_command() {
     _time="$(date '+%H:%M %a %b %d')"
     #PS1="$_orange($SSH_CLIENT) $_maroon\@ \d $_blue\u@\h $_white\w $_error\$\n$_off"
    #                             user host   where        
-    PS1="$_ssh$_maroon$_time $_blue\u@\h $_white\w $_error\$\n$_off"
+    PS1="$_ps_pref$_ssh$_maroon$_time $_blue\u@\h $_white\w $_error\$\n$_off"
 }
     
 #FIXME mksh has no PS1

@@ -40,7 +40,7 @@ myip() {
     ipconfig | sed -n 's/^\s*IPv4 Address[. ]*: *//p'
 }
 
-PS1="MINGW $PS1"
+_ps_pref="MINGW "
 
 _OSRC="$_BASH_OS_CONFIGDIR/windows"
 # vim:ft=sh
