@@ -95,4 +95,9 @@ while :; do
     /usr/local/bin/dwm 2>>.dwm_log
 done  &
 
-/usr/local/bin/dwmstatus || uxterm -ls -T Failsafe -geometry 80x24-0-0
+if [ $(which dwmstatus) ]; then
+    dwmstatus
+else
+    uxterm -ls -T Failsafe -geometry 80x24-0-0
+fi
+
