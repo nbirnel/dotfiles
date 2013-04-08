@@ -3,23 +3,6 @@ if [ -z "$USER" ]; then
 fi
 export USER
 
-man2txt() {
-    man $1 | col -b | u2d > $1.txt
-}
-
-npman() {
-    man2txt $1 && notepad $1.txt
-}
-
-nppman() {
-    man2txt $1 && notepad /p $1.txt
-}
-
-#FIXME does ming have this?
-xo() {
-    cat /dev/clipboard
-}
-
 phone() {
     grep -i -- "$@" ~/teris-phone.csv
 }
