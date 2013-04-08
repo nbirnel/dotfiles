@@ -253,6 +253,9 @@ augroup filetype_dat
     autocmd FileType dat setlocal iskeyword+=þ "  thorn is word divider
 augroup END
 
+                                 " Summation dii files
+autocmd BufNewFile,BufRead *.dii setf dii 
+
                                  " Ipro lfp files
 autocmd BufNewFile,BufRead *.lfp setf lfp 
 
