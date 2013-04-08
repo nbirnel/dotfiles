@@ -3,15 +3,6 @@ if [ -z "$USER" ]; then
 fi
 export USER
 
-alias ll='ls -l -h'
-alias la='ls -A'
-
-# enable color support of ls
-if [ "$TERM" != "dumb" ]; then
-    alias ls='ls --color=auto'
-    [ -e "$DIRCS" ] && eval "`dircolors -b $DIRCS`"
-fi
-
 man2txt() {
     man $1 | col -b | u2d > $1.txt
 }
@@ -24,11 +15,10 @@ nppman() {
     man2txt $1 && notepad /p $1.txt
 }
 
+#FIXME does ming have this?
 xo() {
     cat /dev/clipboard
 }
-
-PAGER="/usr/bin/less -isrRX" && export PAGER
 
 phone() {
     grep -i -- "$@" ~/teris-phone.csv
@@ -41,6 +31,8 @@ myip() {
 }
 
 _ps_pref="MINGW "
+
+. $_BASH_DIST_CONFIGDIR/gnu
 
 _OSRC="$_BASH_OS_CONFIGDIR/windows"
 # vim:ft=sh
