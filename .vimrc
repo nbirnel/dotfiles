@@ -126,8 +126,10 @@ set history=10000                " memory is cheap
 set undolevels=10000             " memory is cheap
 
                                  " Rename our terminal for gui scripting. Sigh.
-"auto BufEnter * let &titlestring = "VIM - " . expand("%F")
-"set title titlestring=VIM\ \-\ %F
+set title 
+let &titleold=getcwd()
+set titlestring=VIM\ \-\ %F
+auto BufEnter * let &titlestring = "VIM - " . expand("%F")
 
 "" GREP
                                  "\g quietly grep recursively for cWORD,

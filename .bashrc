@@ -51,6 +51,9 @@ _prompt_command() {
         _ssh=""
     fi
 
+    _title="$PWD"
+    echo -ne '\e]0;'"$_title"'\a'
+
     _time="$(date '+%H:%M %a %b %d')"
     #PS1="$_orange($SSH_CLIENT) $_maroon\@ \d $_blue\u@\h $_white\w $_error\$\n$_off"
    #                             user host   where        
