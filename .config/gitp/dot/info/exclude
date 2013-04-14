@@ -43,7 +43,7 @@
 !/.gitconfig
 !/.gvimrc
 !/.inputrc
-!/.minttyrc
+!/.minttyrc*
 
 !/.pentadactyl/
 /.pentadactyl/info/
