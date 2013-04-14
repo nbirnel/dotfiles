@@ -1,0 +1,77 @@
+*NumberLines.txt* Number lines quickly.  Last change: 2013 Jan 1
+
+Prepend or append an incrementing string to all or selected lines.
+
+==============================================================================
+USAGE:						*NumberLinesUsage*
+
+Default keybindings are: >
+        vnoremap <leader>N <Esc>:call NumberSelectedLines()<cr>
+        nnoremap <leader>N :call NumberAllLines()<cr>
+        vnoremap <leader>S <Esc>:call <SID>NumberSelectedLines(1)<cr>
+        nnoremap <leader>S :call <SID>NumberAllLines(1)<cr>
+
+Calling with 1 as an argument will append rather than prepend.
+
+This will open a dialog requesting a beginning string. NumberLines will
+attempt to do the right thing with this number - using anything after the last
+digit as a delimiter, using anything up to the last string of digits as a
+prefix, and padding as implied by the length of the last string of digits.
+
+Examples: (* indicates end of beginning string)
+
+With a range of lines thus: >
+        line one
+        line two
+        line three
+<
+the string: >
+        1 *
+<
+will yield: >
+        1 line one
+        2 line two
+        3 line three
+<
+the string: >
+        0*
+<
+will yield: >
+        0line one
+        1line two
+        2line three
+<
+the string: >
+        a1 b2 c002_*
+<
+will yield: >
+        a1 b2 c002_line one
+        a1 b2 c003_line two
+        a1 b2 c004_line three
+<
+the string: >
+        8_*
+<
+will yield: >
+        8_line one
+        9_line two
+        10_line three
+<
+and the string: >
+        foo*
+<
+will change nothing, giving an error message: >
+        No number in "foo"
+< 
+==============================================================================
+LICENSE:					*NumberLinesLicense*
+
+Do whatever you want with this plugin.
+
+==============================================================================
+CREDITS:					*NumberLinesCredits*
+
+Written by Noah Birnel >
+        nbirnel at gmail dot com
+    
+vim:tw=78:ts=8:ft=help:norl:
