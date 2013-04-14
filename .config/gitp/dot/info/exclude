@@ -1,0 +1,62 @@
+# git ls-files --others --exclude-from=.git/info/exclude
+# Lines that start with '
+#' are comments.
+# For a project mostly in C, the following would be a good set of
+# exclude patterns (uncomment them if you want to use them):
+# *.[oa]
+# *~
+/*
+*~
+*stackdump
+!/.Xdefaults
+!/.Xresources
+!/.bash_profile
+!/.bashrc
+!/.config/
+/.config/*
+!/.config/bash/
+!/.config/gitp/
+/.config/gitp/*
+!/.config/gitp/dot/
+/.config/gitp/dot/*
+!/.config/gitp/dot/info/
+/.config/gitp/dot/info/*
+!/.config/gitp/dot/info/exclude
+!/.config/vim/
+!/.config/xinit/
+/.config/xinit/host/
+!/.config/user-dirs.dirs
+!/.config/user-dirs.locale
+!/.cream/
+/.cream/tmp/
+/.cream/views/
+!/.dir_colors
+!/.emacs
+!/.emacs.d/
+/.emacs.d/auto-save-list/
+/.emacs.d/games/
+!/.gitconfig
+!/.gvimrc
+!/.inputrc
+!/.minttyrc
+!/.pentadactyl/
+/.pentadactyl/info/
+!/.pentadactylrc
+!/.profile
+!/.screenrc
+!/.tmux.conf
+!/.vim/
+/.vim/backup/*
+!/.vim/backup/_folder_
+/.vim/doc/tags
+/.vim/tmp/*
+!/.vim/tmp/_folder_
+/.vim/undo/*
+!/.vim/undo/_folder_
+/.vim/.netrwhist
+/.vim/.VimballRecord
+/.vim/viminfo
+!/.vimrc
+!/.viper
+!/.xinitrc
+!/.yast2/
