@@ -1,0 +1,97 @@
+DESKTOP="$(cygpath "$USERPROFILE\\Desktop")"
+export DESKTOP
+
+if [ -z "$USER" ]; then
+    USER="$USERNAME"
+fi
+export USER
+
+alias np='notepad'
+alias npp='notepad /p'
+alias ie='"/cygdrive/c/program files/internet explorer/iexplore.exe"'
+alias cdd='cd "$DESKTOP"'
+
+alias 7zc='/cygdrive/c/Program\ Files/7-Zip/7z.exe a -t7z -m0=lzma -mx=9 -mfb=64 -md=32m -ms=on'
+alias 7zx='/cygdrive/c/Program\ Files/7-Zip/7z.exe x'
+
+we() {
+    if [ -z "$1" ]; then
+        dir="$(cygpath -w ..)"
+    else
+        dir="$(cygpath -w "$1")"
+    fi
+    explorer.exe /n, /e, "$dir" &
+    unset dir
+}
+
+man2txt() {
+    man $1 | col -b | u2d > $1.txt
+}
+
+npman() {
+    man2txt $1 && notepad $1.txt
+}
+
+nppman() {
+    man2txt $1 && notepad /p $1.txt
+}
+
+xo() {
+    cat /dev/clipboard
+}
+
+cdc() {
+    cd "$(cygpath "$(sed 's,/$,,'  /dev/clipboard)")"
+}
+
+cj() {
+    cd "$(cygpath -w "$@")"
+}
+
+alias pacl='cygcheck -l'
+alias pacs='cygcheck -p'
+paco() {
+    if [ -f "$1" ]; then
+        cygcheck -f "$1"
+    else
+        cygcheck -f $(which "$1")
+    fi
+}
+
+#FIXME use setup.exe for paci and pacr
+
+mkdest() {
+    if [ $# -gt 0 ]; then
+        mkdir -p "$@" && cd "$@" || return 1
+    fi
+    dest="$(cygpath -w "$(pwd)")"
+    log="$(echo "$dest" | sed 's,.*\\,,')-robocopy.log"
+    export dest
+    export log
+    echo $dest
+}
+
+robo() {
+    robocopy . "$dest"  /e /dcopy:t /copy:dat /r:5 /w:5 /v /x /ts /fp /tee /log+:"$dest-robocopy.log"
+    (cd "$(cygpath "$dest")"/.. && \
+    mv "$log" "tmp-$log" && \
+    sed 's/\r *[0-9.%]*//g' "tmp-$log" | u2d >"$log" && \
+    rm -f "tmp-$log")
+}
+
+#FIXME it fails on the space
+#alias xl='/cygdrive/c/Program Files/Microsoft Office/Office14/EXCEL.EXE'
+umask 0022
+
+locof() {
+    cygpath -w "$(readlink -f "$@")"
+}
+
+myip() {
+    ipconfig | sed -n 's/^\s*IPv4 Address[. ]*: *//p'
+}
+
+. $_BASH_DIST_CONFIGDIR/gnu
+
+_OSRC="$_BASH_OS_CONFIGDIR/windows"
+# vim:ft=sh

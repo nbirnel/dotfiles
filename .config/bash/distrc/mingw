@@ -1,0 +1,21 @@
+if [ -z "$USER" ]; then
+    USER="$USERNAME"
+fi
+export USER
+
+phone() {
+    grep -i -- "$@" ~/teris-phone.csv
+}
+
+umask 0022
+
+myip() {
+    ipconfig | sed -n 's/^\s*IPv4 Address[. ]*: *//p'
+}
+
+_ps_pref="MINGW "
+
+. $_BASH_DIST_CONFIGDIR/gnu
+
+_OSRC="$_BASH_OS_CONFIGDIR/windows"
+# vim:ft=sh
