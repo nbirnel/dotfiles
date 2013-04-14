@@ -1,0 +1,17 @@
+BoldAsFont=yes
+BackgroundColour=254,253,218
+BoldAsColour=no
+Term=xterm-256color
+CursorColour=255,0,0
+AllowBlinking=yes
+CursorType=block
+CursorBlinks=no
+Scrollbar=none
+Font=DejaVu Sans Mono
+FontHeight=11
+FontIsBold=no
+ForegroundColour=0,0,0
+ClicksPlaceCursor=yes
+CursorType=block
+PgUpDnScroll=yes
+Title=mintty
