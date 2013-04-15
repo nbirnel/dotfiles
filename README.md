@@ -15,8 +15,7 @@ echo '!/.config/gitp/dot/info/exclude' >>.config/gitp/dot/info/exclude
 #Otherwise you may have a lot of unpleasant merging.
 git --work-tree=./ --git-dir="./.config/gitp/dot" add \
   .config/gitp/dot/info/exclude
-git --work-tree=./ --git-dir="./.config/gitp/dot" commit \
-  -m "1st local commit" -a
+git --work-tree=./ --git-dir="./.config/gitp/dot" commit
 git --work-tree=./ --git-dir="./.config/gitp/dot" pull
 ```
 
