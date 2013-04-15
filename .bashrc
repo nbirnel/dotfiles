@@ -480,7 +480,7 @@ gitp() {
 }
 
 authme() {
-    cat "$HOME"/.ssh/id_*sa.pub \|
+    cat "$HOME"/.ssh/id_*sa.pub |\
       ssh "$@" 'cat - >>"$HOME/.ssh/authorized_keys"'
 }
 
