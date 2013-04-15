@@ -1,6 +1,6 @@
 First time setup is not fun:
 
-`cd
+```cd
 git --work-tree=./ --git-dir="./.config/gitp/dot" init
 sed 's,worktree = .*,\1../../..' .config/gitp/dot/config /tmp/gitp-cfg
 mv /tmp/gitp-cfg .config/gitp/dot/config
@@ -17,6 +17,6 @@ git --work-tree=./ --git-dir="./.config/gitp/dot" add \
   .config/gitp/dot/info/exclude
 git --work-tree=./ --git-dir="./.config/gitp/dot" commit \
   -m "1st local commit" -a
-git --work-tree=./ --git-dir="./.config/gitp/dot" pull`
+git --work-tree=./ --git-dir="./.config/gitp/dot" pull```
 
 
