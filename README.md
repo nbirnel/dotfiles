@@ -2,7 +2,7 @@ First time setup is not fun:
 
 ```cd
 git --work-tree=./ --git-dir="./.config/gitp/dot" init
-sed 's,\(worktree = \).*,\1../../..' .config/gitp/dot/config /tmp/gitp-cfg
+sed 's,\(worktree = \).*,\1../../..' .config/gitp/dot/config >/tmp/gitp-cfg
 mv /tmp/gitp-cfg .config/gitp/dot/config
 git --work-tree=./ --git-dir="./.config/gitp/dot" remote add origin\
   git@github.com:nbirnel/dotfiles.git
