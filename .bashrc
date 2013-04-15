@@ -479,6 +479,11 @@ gitp() {
     ( cd ~ && git --work-tree=./ --git-dir="./.config/gitp/$dir" $@)
 }
 
+authme() {
+    cat "$HOME"/.ssh/id_*sa.pub \|
+      ssh "$@" 'cat - >>"$HOME/.ssh/authorized_keys"'
+}
+
 #FIXME mksh won't use this?
 # reset this last so we don't get a bunch of bashrc in our history
 set -o history
