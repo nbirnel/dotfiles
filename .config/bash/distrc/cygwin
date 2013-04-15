@@ -106,6 +106,7 @@ if [ $? = 2 ]; then
    source /tmp/.ssh-script
    echo $SSH_AGENT_PID > ~/.ssh-agent-pid
    rm /tmp/.ssh-script
+   ssh-add
 fi
 
 . $_BASH_DIST_CONFIGDIR/gnu
