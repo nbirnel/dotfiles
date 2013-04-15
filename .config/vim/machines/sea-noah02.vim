@@ -1,2 +1,2 @@
-colorscheme default
+colorscheme zellner
 " vim:ft=vim
