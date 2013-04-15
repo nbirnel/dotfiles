@@ -95,6 +95,7 @@ myip() {
 #http://www.electricmonk.nl/log/2012/04/24/re-use-existing-ssh-agent-cygwin-et-al/
 # If no SSH agent is already running, start one now. Re-use sockets so we never
 # have to start more than one session.
+# You'll still need to run ssh-add once, manually.
 export SSH_AUTH_SOCK="$HOME/.ssh-socket"
 ssh-add -l >/dev/null 2>&1
 if [ $? = 2 ]; then
