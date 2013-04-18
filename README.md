@@ -1,6 +1,7 @@
 First time setup is not fun:
 
 ```cd
+mkdir -p .config/gitp
 git --work-tree=./ --git-dir="./.config/gitp/dot" init
 sed 's,\(worktree = \).*,\1../../..' .config/gitp/dot/config >/tmp/gitp-cfg
 mv /tmp/gitp-cfg .config/gitp/dot/config
