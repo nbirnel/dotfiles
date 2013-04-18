@@ -13,6 +13,8 @@ sed 's,\(worktree = \).*,\1../../..,' $cfg >/tmp/gitp-cfg
 mv /tmp/gitp-cfg $cfg
 $git remote add origin\
   https://github.com/nbirnel/dotfiles.git
+# for a trusted machine, use:
+# git@github.com:nbirnel/dotfiles.git
 echo '[branch "master"]
 	remote = origin
 	merge = refs/heads/master' >>$cfg
