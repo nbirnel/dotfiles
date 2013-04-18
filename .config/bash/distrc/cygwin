@@ -79,6 +79,13 @@ robo() {
     rm -f "tmp-$log")
 }
 
+open() {
+    #let's be like OS X
+    for i in "$@"; do
+        cygstart "$i"
+    done
+}
+
 #FIXME it fails on the space
 #alias xl='/cygdrive/c/Program Files/Microsoft Office/Office14/EXCEL.EXE'
 umask 0022
