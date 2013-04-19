@@ -325,73 +325,64 @@ mkcd() {
     mkdir -p "$1" && cd "$1"
 }
 
-carry() {
+_follow_funs_helper() {
+    action=$1
+    shift
+    if [ $1 = back ]; then
+        _dest="$OLDPWD"
+        shift
+    elif [ $1 = last ]; then      #this ludicrous thing
+        shift                     #strips off the last arg.
+        argc=0
 
-    argc=0
+        for arg; do
+            case $arg in 
+              *) eval arg_$argc=\$arg
+                 argc=$(expr $argc + 1)
+                 ;;
+            esac
+        done
 
-    for arg; do
-        case $arg in 
-          *) eval arg_$argc=\$arg
-             argc=$(expr $argc + 1)
-             ;;
-        esac
-    done
+        eval "_dest=\${$#}"
 
-    eval "dest=\${$#}"
-
-    shift $#
-    argc=$(expr $argc - 1)
-
-    while test $argc -gt 0; do
+        shift $#
         argc=$(expr $argc - 1)
-        eval 'set -- "$arg_'$argc'" "$@"'
-        unset arg_$argc
-    done
 
-    mv "$@" "$dest" && {
-        if [ -d "$dest" ]; then
-            cd "$dest"
+        while test $argc -gt 0; do
+            argc=$(expr $argc - 1)
+            eval 'set -- "$arg_'$argc'" "$@"'
+            unset arg_$argc
+        done
+    fi
+
+    $action "$@" "$_dest" && {
+        if [ -d "$_dest" ]; then
+            cd "$_dest"
         else
-            cd "$(echo "$dest" | sed 's,[^/]\+/\?$,,')"
+            #what is this sed thing? shouldn't we bail?
+            cd "$(echo "$_dest" | sed 's,[^/]\+/\?$,,')"
         fi
     }
-    unset dest
+    unset _dest
 }
-
-#FIXME factor out dupes!
 
 follow() {
-
-    argc=0
-
-    for arg; do
-        case $arg in 
-          *) eval arg_$argc=\$arg
-             argc=$(expr $argc + 1)
-             ;;
-        esac
-    done
-
-    eval "dest=\${$#}"
-
-    shift $#
-    argc=$(expr $argc - 1)
-
-    while test $argc -gt 0; do
-        argc=$(expr $argc - 1)
-        eval 'set -- "$arg_'$argc'" "$@"'
-        unset arg_$argc
-    done
-
-    cp "$@" "$dest" && {
-        if [ -d "$dest" ]; then
-            cd "$dest"
-        else
-            cd "$(echo "$dest" | sed 's,[^/]\+/\?$,,')"
-        fi
-    }
-    unset dest
+    _follow_funs_helper cp last "$@"
 }
+
+carry() {
+    _follow_funs_helper mv last "$@"
+}
+
+followbk() {
+    _follow_funs_helper cp back "$@"
+}
+
+carrybk() {
+    _follow_funs_helper mv back "$@"
+}
+
+
 
 #FIXME mksh won't have this
 savehist() {
