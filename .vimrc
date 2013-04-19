@@ -128,7 +128,7 @@ set undolevels=10000             " memory is cheap
                                  " Rename our terminal for gui scripting. Sigh.
 set title 
 let &titleold=getcwd()
-set titlestring=VIM\ \-\ %F
+set titlestring=\-vim\-\ \-\ %F
 auto BufEnter * let &titlestring = "VIM - " . expand("%F")
 
 "" GREP
