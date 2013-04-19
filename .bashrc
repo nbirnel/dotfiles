@@ -360,7 +360,9 @@ _follow_funs_helper() {
             cd "$_dest"
         else
             #what is this sed thing? shouldn't we bail?
-            cd "$(echo "$_dest" | sed 's,[^/]\+/\?$,,')"
+            #anyway, ? and + are not portable.
+            #cd "$(echo "$_dest" | sed 's,[^/]\+/\?$,,')"
+            cd "$(echo "$_dest" | sed 's,[^/][^/]*/\{0,1\}$,,')"
         fi
     }
     unset _dest
