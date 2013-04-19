@@ -33,8 +33,6 @@ echo '/*
 $git add $excl
 $git commit
 $git pull
-
-
 ```
 
 
