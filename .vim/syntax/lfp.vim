@@ -24,7 +24,7 @@ syntax match lfpDelimiter /[,;]/
 " syn region done start=/\*\*DONE/ end=/\*\*/ 
 
 syn match lfpIM /^im/
-hi default  lfpIM ctermfg=Blue guifg=white guibg=Blue
+hi default  lfpIM ctermfg=LightBlue guifg=white guibg=LightBlue
 
 syn match lfpVN /^vn/
 hi default lfpVN ctermfg=DarkRed guifg=white guibg=DarkRed 
@@ -42,13 +42,13 @@ syn match lfpLC /^lc/
 hi default lfpLC ctermfg=LightBlue guifg=white guibg=LightBlue 
 
 syn match lfpIA /^ia/
-hi default lfpIA ctermfg=Red guifg=white guibg=Red 
+hi default lfpIA ctermfg=LightYellow guifg=white guibg=LightYellow 
 
 syn match lfpIO /^io/
-hi default lfpIO ctermfg=Red guifg=white guibg=Red 
+hi default lfpIO ctermfg=LightYellow guifg=white guibg=LightYellow 
 
 syn match lfpIS /^is/
-hi default lfpIS ctermfg=Red guifg=white guibg=Red 
+hi default lfpIS ctermfg=LightYellow guifg=white guibg=LightYellow 
 
 syn match lfpOF /^of/
 hi default lfpOF ctermfg=DarkYellow guifg=white guibg=DarkYellow 
@@ -75,7 +75,7 @@ syn match lfpRP /^rp/
 hi default lfpRP ctermfg=Cyan guifg=white guibg=Cyan 
 
 syn match lfpBR /^br/
-hi default lfpBR ctermfg=Gray guifg=white guibg=Gray 
+hi default lfpBR ctermfg=Black guifg=white guibg=Black 
 
 syn match lfpCK /^ck/
 hi default lfpCK ctermfg=DarkGreen guifg=white guibg=DarkGreen 
@@ -96,10 +96,10 @@ syn match lfpRR /^rr.*/
 hi default lfpRR ctermfg=DarkRed guifg=white guibg=DarkRed 
 
 "syn match lfpBreak /[SBFDC]/
-"hi default lfpBreak ctermfg=Blue guifg=white guibg=Blue 
+"hi default lfpBreak ctermfg=LightBlue guifg=white guibg=LightBlue 
 
 syn match lfpVolume /@[A-Za-z_0-9]*/
-hi default lfpVolume ctermfg=Blue guifg=white guibg=Blue 
+hi default lfpVolume ctermfg=DarkBlue guifg=white guibg=DarkBlue 
 
 " hi link tododone tDone
 " hi link done tDone
@@ -123,3 +123,4 @@ endif
 
 " b: local to current buffer
 let b:current_syntax = "lfp"
+

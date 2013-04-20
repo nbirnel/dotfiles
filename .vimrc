@@ -13,6 +13,10 @@ endif
 set modeline                     " set secure at end
 
 set encoding=utf-8               " because we're modern
+setglobal fileencoding=utf-8     " ...
+set nobomb                       " do not write utf-8 BOM!
+set fileencodings=ucs-bom,utf-8,iso-8859-1
+                                 " order to detect Unicodeyness
 
 "" VIM MANAGEMENT
                                  " use pathogen for .vim package management:
@@ -46,6 +50,7 @@ set matchtime=5                  " how many tenths of a second to blink
 
 set colorcolumn=80               " visual notice when my lines are too long
 set nowrap                       " one line per line
+set showbreak=↳\                 " shown at the start of a wrapped line
 
 syntax on                        " syntax highlighting on
 colorscheme darkblue             " default - to be reset in machinefile
@@ -79,6 +84,12 @@ set statusline+=(%p%%)           " percentage in to file
 set diffopt=filler,vertical
 
 "" NAVIGATION
+                                 " g% to toggle between the last two tabs
+map g% :exe "tabn ".g:ltv<CR>
+function! Setlasttabpagevisited()
+    let g:ltv = tabpagenr()
+endfunction
+
 set matchpairs+=<:>              " angle brackets bounced with %
 
 " INDENT
@@ -115,8 +126,10 @@ set history=10000                " memory is cheap
 set undolevels=10000             " memory is cheap
 
                                  " Rename our terminal for gui scripting. Sigh.
+set title 
+let &titleold=getcwd()
+set titlestring=\-vim\-\ \-\ %F
 auto BufEnter * let &titlestring = "VIM - " . expand("%F")
-set title titlestring=VIM\ \-\ %F
 
 "" GREP
                                  "\g quietly grep recursively for cWORD,
@@ -242,6 +255,9 @@ augroup filetype_dat
     autocmd FileType dat setlocal iskeyword+=þ "  thorn is word divider
 augroup END
 
+                                 " Summation dii files
+autocmd BufNewFile,BufRead *.dii setf dii 
+
                                  " Ipro lfp files
 autocmd BufNewFile,BufRead *.lfp setf lfp 
 
@@ -263,6 +279,9 @@ autocmd BufNewFile,BufRead *.ahk setf ahk
 nnoremap <leader>v v`]
 
 set virtualedit=block            " allow block selecting past end of line
+
+                                 " Swaps selection with buffer
+vnoremap <leader>x <Esc>`.``gvP``P
 
 "" SUBSTITUTE
 
@@ -301,5 +320,6 @@ endif
 
 "" WRAP-UP
 set secure                       " important since we set modeline way above
+
 
 

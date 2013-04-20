@@ -1,14 +1,18 @@
+#FIXME PS1 not in mksh
 [ -z "$PS1" ] && return         # Check for an interactive session
 
+#FIXME set has different opts in mksh
 unset MAILCHECK                 # no "You have mail in ..."
 
 umask 0022          # everyone can use my files by default!
 
+#FIXME not bashrc - profile?
 [ -z $BASHRC_HAS_RUN ] \
     && PATH="$HOME/bin:/bin:/usr/local/bin:/usr/bin:$PATH"
 BASHRC_HAS_RUN=1                  && export BASHRC_HAS_RUN
 export PATH
 
+#FIXME mksh has no shopt
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
@@ -21,22 +25,65 @@ shopt -s checkwinsize
 # GNU dircolors. Will be called as appropriate in os / dist bashrc. No export!
 DIRCS=$HOME/.dir_colors
 
-case $TERM in 
-	cons* )
+_off='\[\e[0m\]'
+_black='\[\e[30m\]'
+_red='\[\e[31m\]'
+_green='\[\e[32m\]'
+_orange='\[\e[33m\]'
+_blue='\[\e[34m\]'
+_maroon='\[\e[35m\]'
+_cyan='\[\e[36m\]'
+_white='\[\e[37m\]'
+_contrast="$_white"
+
+_prompt_command() {
+    if test $? = 0; then
+        _error="$_green"
+    else
+        _error="$_red"
+    fi
+
+    #FIXME mksh probably doesn't have this
+    # append history after each command
+    history -a
+    if test -n "$SSH_CONNECTION"; then
+        _ssh="$_orange($(echo $SSH_CONNECTION | cut -d' ' -f1)) "
+    else
+        _ssh=""
+    fi
+
+    _title="$PWD"
+    echo -ne '\e]0;'"$_title"'\a'
+
+    _time="$(date '+%H:%M %a %b %d')"
+   #                             user host   where        
+    PS1="$_ps_pref$_ssh$_maroon$_time $_blue\u@\h $_contrast\w $_error\$\n$_off"
+}
+    
+#FIXME mksh has no PS1
+#FIXME make colors vars :
+# _maroon='\[\e[35m\]'
+# _time='\@'
+#case $TERM in 
+#	cons* )
 #        MAROON  time date BLUE  user host  RED  directory    prompt  WHITE
-	PS1="\[\e[35m\]\@ \d \[\e[34m\]\u@\h \[\e[31m\]\w\[\e[31m\]\n\$\[\e[37m\]"
-	;;
-	cygwin* )
+#	PS1="\[\e[35m\]\@ \d \[\e[34m\]\u@\h \[\e[31m\]\w\[\e[31m\]\n\$\[\e[37m\]"
+#	;;
+#	cygwin* )
 #        MAROON  time date BLUE  user host  RED  directory    prompt  WHITE
-	PS1="\[\e[35m\]\@ \d \[\e[34m\]\u@\h \[\e[31m\]\w\[\e[31m\]\n\$\[\e[37m\]"
-	;;
-	* )
+#	PS1="\[\e[35m\]\@ \d \[\e[34m\]\u@\h \[\e[31m\]\w\[\e[31m\]\n\$\[\e[37m\]"
+#	;;
+#	* )
 #        MAROON  time date BLUE  user host  RED  directory    prompt  WHITE
-	PS1="\[\e[35m\]\@ \d \[\e[34m\]\u@\h \[\e[31m\]\w\[\e[31m\]\n\$\[\e[37m\]"
+#	PS1="\[\e[35m\]\@ \d \[\e[34m\]\u@\h \[\e[31m\]\w\[\e[31m\]\n\$\[\e[37m\]"
 #        MAROON  time date BLUE  user host  RED  directory    prompt  BLACK
 #	PS1="\[\e[35m\]\@ \d \[\e[34m\]\u@\h \[\e[31m\]\w\[\e[31m\]\n\$\[\e[30m\]"
-	;;
-esac
+#	;;
+#esac
+
+#}
+
+PROMPT_COMMAND=_prompt_command
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -47,10 +94,11 @@ esac
 
 #environmental variables
 
+#FIXME mksh type is an alias for whence - use which?
 type -p vim >/dev/null && export EDITOR=$(type -p vim)     && export EDITOR
 type -p vim >/dev/null && export GIT_EDITOR=$(type -p vim) && export GIT_EDITOR
 type -p less >/dev/null && export PAGER=$(type -p less)    && export PAGER
-type -p vi >/dev/null && export VISUAL=$(type -p vi)       && export VISUAL
+type -p vim >/dev/null && export VISUAL=$(type -p vim)       && export VISUAL
 type -p firefox >/dev/null && export BROWSER=$(type -p firefox) && export BROWSER
 MAIL=/var/spool/mail/noah             && export export MAIL
 
@@ -60,25 +108,26 @@ elif [ -d /usr/local/plan9 ]; then
     PLAN9=/opt/plan9 && export PLAN9
 fi
 
+#FIXME mksh type is an alias for whence - use which?
 # reminders!
 type -t remind > /dev/null
 [ $? == 0 -a -e ~/.remind/master ] && remind ~/.remind/master
 
+#FIXME mksh might not have this?
 HISTTIMEFORMAT='%y-%m-%d %H:%M '
 export HISTTIMEFORMAT
 HISTTIMEFORMAT='%y-%m-%d %H:%M '
 export HISTTIMEFORMAT
 HISTFILESIZE=50000
 export HISTFILESIZE
+
+#FIXME mksh has no shopt
 # something like this to save multiline commands
 # with embedded newlines
 #shopt -s lithist
 # or like this to 'attempt'(?) to add syntacticly correct
 # semicolons
 shopt -s cmdhist
-
-# append history after each command
-PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
 
 # surfraw elvii
 PATH=$PATH:/usr/local/lib/surfraw
@@ -100,7 +149,7 @@ alias cdd='cd $HOME/Desktop'
 _BASH_CONFIGDIR="$HOME/.config/bash"
 _BASH_OS_CONFIGDIR="$_BASH_CONFIGDIR/osrc"
 _BASH_DIST_CONFIGDIR="$_BASH_CONFIGDIR/distrc"
-_BASH_LOCAL_CONFIGDIR="$_BASH_CONFIGDIR/localrc"
+_BASH_LOCAL_CONFIGDIR="$HOME/.config/bash_local"
 
 case "$(uname)" in
     ARCH)
@@ -205,6 +254,7 @@ alias manm="man -M $HOME/man"
 alias manp="man -M $HOME/usr/share/man/posix"
 alias info="info --vi-keys"
 
+#FIXME this belongs in bsd?
 # sudo aliases
 alias cdrip='sudo cdrip'
 
@@ -275,76 +325,68 @@ mkcd() {
     mkdir -p "$1" && cd "$1"
 }
 
-alias sshhome='ssh noah@24.18.128.167'
+_follow_funs_helper() {
+    action=$1
+    shift
+    if [ $1 = back ]; then
+        _dest="$OLDPWD"
+        shift
+    elif [ $1 = last ]; then      #this ludicrous thing
+        shift                     #strips off the last arg.
+        argc=0
 
-carry() {
+        for arg; do
+            case $arg in 
+              *) eval arg_$argc=\$arg
+                 argc=$(expr $argc + 1)
+                 ;;
+            esac
+        done
 
-    argc=0
+        eval "_dest=\${$#}"
 
-    for arg; do
-        case $arg in 
-          *) eval arg_$argc=\$arg
-             argc=$(expr $argc + 1)
-             ;;
-        esac
-    done
-
-    eval "dest=\${$#}"
-
-    shift $#
-    argc=$(expr $argc - 1)
-
-    while test $argc -gt 0; do
+        shift $#
         argc=$(expr $argc - 1)
-        eval 'set -- "$arg_'$argc'" "$@"'
-        unset arg_$argc
-    done
 
-    mv "$@" "$dest" && {
-        if [ -d "$dest" ]; then
-            cd "$dest"
+        while test $argc -gt 0; do
+            argc=$(expr $argc - 1)
+            eval 'set -- "$arg_'$argc'" "$@"'
+            unset arg_$argc
+        done
+    fi
+
+    $action "$@" "$_dest" && {
+        if [ -d "$_dest" ]; then
+            cd "$_dest"
         else
-            cd "$(echo "$dest" | sed 's,[^/]\+/\?$,,')"
+            #what is this sed thing? shouldn't we bail?
+            #anyway, ? and + are not portable.
+            #cd "$(echo "$_dest" | sed 's,[^/]\+/\?$,,')"
+            cd "$(echo "$_dest" | sed 's,[^/][^/]*/\{0,1\}$,,')"
         fi
     }
-    unset dest
+    unset _dest
 }
-
-#FIXME factor out dupes!
 
 follow() {
-
-    argc=0
-
-    for arg; do
-        case $arg in 
-          *) eval arg_$argc=\$arg
-             argc=$(expr $argc + 1)
-             ;;
-        esac
-    done
-
-    eval "dest=\${$#}"
-
-    shift $#
-    argc=$(expr $argc - 1)
-
-    while test $argc -gt 0; do
-        argc=$(expr $argc - 1)
-        eval 'set -- "$arg_'$argc'" "$@"'
-        unset arg_$argc
-    done
-
-    cp "$@" "$dest" && {
-        if [ -d "$dest" ]; then
-            cd "$dest"
-        else
-            cd "$(echo "$dest" | sed 's,[^/]\+/\?$,,')"
-        fi
-    }
-    unset dest
+    _follow_funs_helper cp last "$@"
 }
 
+carry() {
+    _follow_funs_helper mv last "$@"
+}
+
+followbk() {
+    _follow_funs_helper cp back "$@"
+}
+
+carrybk() {
+    _follow_funs_helper mv back "$@"
+}
+
+
+
+#FIXME mksh won't have this
 savehist() {
     HISTFILE="$HOME/.config/bash_history/$@"
     export HISTFILE
@@ -387,12 +429,56 @@ filect() {
 }
 
 gitp() {
+    while [ $# -gt 0 ]; do
+        case "$1" in
+          -ls)
+            shift 
+            ls "$HOME/.config/gitp"
+            return
+            ;;
+          --edit-config)
+            $EDITOR "$HOME/.config/gitp/$2/config"
+            return $?
+            ;;
+          --edit-exclude)
+            $EDITOR "$HOME/.config/gitp/$2/info/exclude"
+            return $?
+            ;;
+          --scp-config)
+            remote="$(gitp "$2" remote show -n "$3" |\
+                      sed -n 's/ *Fetch URL: *//p')"
+            scp "$remote/config" "$HOME/.config/gitp/$2/"
+            return $?
+            ;;
+          --scp-exclude)
+            remote="$(gitp "$2" remote show -n "$3" |\
+                      sed -n 's/ *Fetch URL: *//p')"
+            scp "$remote/info/exclude" "$HOME/.config/gitp/$2/info/"
+            return $?
+            ;;
+          -*)
+            echo "Unknown flag $1" 1>&2
+            return 1
+            ;;
+          *)
+            break
+            ;;
+        esac
+    done
+
     #dot, doc, personal, secure, work, work-secure
     dir="$1"
     shift
     ( cd ~ && git --work-tree=./ --git-dir="./.config/gitp/$dir" $@)
 }
 
+authme() {
+    cat "$HOME"/.ssh/id_*sa.pub |\
+      ssh "$@" 'cat - >>"$HOME/.ssh/authorized_keys"'
+}
+
+#FIXME mksh won't use this?
 # reset this last so we don't get a bunch of bashrc in our history
 set -o history
+
 

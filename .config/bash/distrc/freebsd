@@ -9,13 +9,13 @@ alias unremd='sync && sudo /sbin/umount /dev/ad2s1'
 alias paci='sudo pkg_add -r'
 pacl() {
     _pkgdir=/var/db/pkg
-    pkg_info -L $(ls -d "$pkgdir/$1-"*)
+    pkg_info -L $(ls -d "$_pkgdir/$1-"*)
     unset _pkgdir
 }
 
 pacr() {
     pkgdir=/var/db/pkg
-    pkg_delete -i $(ls -d "$pkgdir/$1-"*)
+    sudo pkg_delete -i $(ls -d "$pkgdir/$1-"*)
     unset _pkgdir
 }
 
@@ -26,3 +26,4 @@ alias xi='xclip -i'
 
 _OSRC="$_BASH_OS_CONFIGDIR/bsd"
 # vim:ft=sh
+

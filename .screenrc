@@ -110,3 +110,10 @@ utf8 on
 #shut up, would you?
 startup_message off
 
+#from
+#http://me.veekun.com/blog/2012/03/21/tmux-is-sweet-as-heck/
+caption always "%{= kw}%?%-Lw%?%{Kw}%n*%f %t%?(%u)%?%{kw}%?%+Lw%? %=%{= dw} %H "
+
+#make my prefix like my tmux prefix C-\
+escape ^\\
+
