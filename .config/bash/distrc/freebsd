@@ -1,0 +1,28 @@
+alias shutdownn='sudo shutdown -p now'
+alias shutdownr='sudo shutdown -r now'
+
+alias usb='sudo ntfs-3g /dev/da0s1 /media/usb/'
+alias unusb='sync && sudo /sbin/umount /media/usb'
+alias remd='sudo /sbin/mount /dev/ad2s1'
+alias unremd='sync && sudo /sbin/umount /dev/ad2s1'
+
+alias paci='sudo pkg_add -r'
+pacl() {
+    _pkgdir=/var/db/pkg
+    pkg_info -L $(ls -d "$pkgdir/$1-"*)
+    unset _pkgdir
+}
+
+pacr() {
+    pkgdir=/var/db/pkg
+    pkg_delete -i $(ls -d "$pkgdir/$1-"*)
+    unset _pkgdir
+}
+
+alias paco='sudo pkg_info -W'
+
+alias xo='xclip -o'
+alias xi='xclip -i'
+
+_OSRC="$_BASH_OS_CONFIGDIR/bsd"
+# vim:ft=sh

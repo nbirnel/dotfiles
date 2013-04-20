@@ -1,0 +1,21 @@
+!heading
+-bulleted list
+#numbered list
++ ("add to the page" field)
+_ (horizontal bar)
+*link to an internal page*
+*http://www.externalSite.com/*
+<?file src="uploadedFileName"?>
+<?image src="uploadedImageName"?>
+<?plug-in?>
+<b>bold</b>
+<i>italics</i>
+<u>underline</u>
+<code>programming code</code>
+<html>imported HTML</html>
+| table | with | three | columns
+&star; = *
+&amp; = &
+&lt; = <
+&gt; = >
+more...
