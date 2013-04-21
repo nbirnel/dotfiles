@@ -384,7 +384,13 @@ carrybk() {
     _follow_funs_helper mv back "$@"
 }
 
+cpbk() {
+    cp "$@" "$OLDPWD"
+}
 
+mvbk() {
+    mv "$@" "$OLDPWD"
+}
 
 #FIXME mksh won't have this
 savehist() {
