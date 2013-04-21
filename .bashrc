@@ -475,7 +475,7 @@ gitp() {
     #dot, doc, personal, secure, work, work-secure
     dir="$1"
     shift
-    ( cd ~ && git --work-tree=./ --git-dir="./.config/gitp/$dir" $@)
+    ( cd ~ && git --git-dir="./.config/gitp/$dir" $@)
 }
 
 authme() {
