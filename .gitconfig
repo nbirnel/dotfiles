@@ -1,7 +1,0 @@
-[user]
-	name = Noah Birnel
-	email = nbirnel@gmail.com
-[merge]
-	tool = vimdiff
-[color]
-	ui = true
