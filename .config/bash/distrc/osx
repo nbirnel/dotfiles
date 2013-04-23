@@ -11,6 +11,8 @@ alias vimrco='vim "+set ft=sh" "$_OSRC"'
 alias vimrcl='vim "+set ft=sh" "$_LOCALRC"'
 alias vo='vim -O'
 
+alias ffprof='/Applications/Firefox.app//Contents/MacOS/firefox --ProfileManager'
+
 myip() {
     ifconfig | sed -n '/^en0/,/^[a-z]/s/.*inet \([0-9.]*\).*/\1/p'
 }
