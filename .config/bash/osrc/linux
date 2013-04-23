@@ -10,3 +10,4 @@ alias d2u='dos2unix --d2u'
 
 . $_BASH_DIST_CONFIGDIR/gnu
 # vim:ft=sh
+

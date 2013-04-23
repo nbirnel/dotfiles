@@ -26,3 +26,4 @@ function! PlainText()
     setlocal spelllang=en_us
     setlocal spellfile=teris.add
 endfunction
+

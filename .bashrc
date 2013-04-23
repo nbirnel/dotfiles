@@ -486,4 +486,3 @@ authme() {
 #FIXME mksh won't use this?
 # reset this last so we don't get a bunch of bashrc in our history
 set -o history
-

@@ -116,3 +116,4 @@ caption always "%{= kw}%?%-Lw%?%{Kw}%n*%f %t%?(%u)%?%{kw}%?%+Lw%? %=%{= dw} %H "
 
 #make my prefix like my tmux prefix C-\
 escape ^\\
+

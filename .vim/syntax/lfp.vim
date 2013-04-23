@@ -123,3 +123,4 @@ endif
 
 " b: local to current buffer
 let b:current_syntax = "lfp"
+
