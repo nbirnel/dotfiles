@@ -1,7 +1,6 @@
 alias xo='pbpaste'
 alias xi='pbcopy'
 
-
 export EDITOR=/usr/local/bin/vim     && export EDITOR
 export GIT_EDITOR=/usr/local/bin/vim && export GIT_EDITOR
 alias vim=/usr/local/bin/vim
