@@ -98,6 +98,8 @@ myip() {
     ipconfig | sed -n 's/^\s*IPv4 Address[. ]*: *//p'
 }
 
+alias term='mintty &'
+
 # This yanked from 
 #http://www.electricmonk.nl/log/2012/04/24/re-use-existing-ssh-agent-cygwin-et-al/
 # If no SSH agent is already running, start one now. Re-use sockets so we never

@@ -24,6 +24,8 @@ alias paco='sudo pkg_info -W'
 alias xo='xclip -o'
 alias xi='xclip -i'
 
+alias term='uxterm &'
+
 _OSRC="$_BASH_OS_CONFIGDIR/bsd"
 # vim:ft=sh
 
