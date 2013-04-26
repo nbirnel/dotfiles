@@ -1,0 +1,4 @@
+#text/html;  uzbl-browser file://%s; nametemplate=%s.html; test=test -n "$DISPLAY"
+#text/html;  surf file://%s; nametemplate=%s.html; test=test -n "$DISPLAY"
+text/html;  w3m %s; nametemplate=%s.html; test=test -n "$DISPLAY"
+text/html;  links -dump %s; nametemplate=%s.html; copiousoutput
