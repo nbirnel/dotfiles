@@ -1,12 +1,12 @@
 First time setup is not fun:
 
 ```
+cd
 dot="./.config/gitp/dot"
 cfg="$dot/config"
 excl="$dot/info/exclude"
 git="git --work-tree=./ --git-dir=$dot"
 
-cd
 mkdir -p .config/gitp
 $git init
 sed 's,\(worktree = \).*,\1../../..,' $cfg >/tmp/gitp-cfg
