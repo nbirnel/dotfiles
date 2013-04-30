@@ -16,5 +16,9 @@ myip() {
     ifconfig | sed -n '/^en0/,/^[a-z]/s/.*inet \([0-9.]*\).*/\1/p'
 }
 
+ff() {
+    /Applications/Firefox.app/Contents/MacOS/firefox "$@"
+}
+
 _OSRC="$_BASH_OS_CONFIGDIR/bsd"
 # vim:ft=sh
