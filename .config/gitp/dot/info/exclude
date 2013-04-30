@@ -40,7 +40,6 @@
 /.emacs.d/auto-save-list/
 /.emacs.d/games/
 
-!/.gitconfig
 !/.gvimrc
 !/.inputrc
 !/.mailcap
