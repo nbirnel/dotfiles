@@ -22,6 +22,10 @@ shopt -s checkwinsize
 [ -x /opt/local/bin/lesspipe.sh ] \
     && export LESSOPEN='| /opt/local/bin/lesspipe.sh %s'
 
+# modern and american
+export LC_CTYPE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
 # GNU dircolors. Will be called as appropriate in os / dist bashrc. No export!
 DIRCS=$HOME/.dir_colors
 
