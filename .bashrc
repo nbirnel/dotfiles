@@ -435,7 +435,7 @@ pgen() {
 }
 
 filect() {
-    find "$@" -type f | sort -u | wc
+    find "$@" -type f | sort -u | wc -l
 }
 
 gitp() {
