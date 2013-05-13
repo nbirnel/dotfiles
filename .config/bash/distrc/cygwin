@@ -98,7 +98,9 @@ myip() {
     ipconfig | sed -n 's/^\s*IPv4 Address[. ]*: *//p'
 }
 
-alias term='mintty &'
+export X_TERMINAL_EMULATOR=uxterm
+export NO_X_TERMINAL_EMULATOR=mintty
+export TERMINAL_MULTIPLEXER=screen
 
 # This yanked from 
 #http://www.electricmonk.nl/log/2012/04/24/re-use-existing-ssh-agent-cygwin-et-al/

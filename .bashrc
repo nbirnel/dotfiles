@@ -487,6 +487,26 @@ authme() {
       ssh "$@" 'cat - >>"$HOME/.ssh/authorized_keys"'
 }
 
+term() {
+    if [ -n "$TMUX" ]; then
+        tmux split-window -h
+    elif [ -n "$WINDOW" ]; then
+#        screen -p $WINDOW mumble mumble #FIXME
+    elif [ -n "$DISPLAY" ]; then
+        $X_TERMINAL_EMULATOR
+    elif [ -n "$TERMINAL_MULTIPLEXER" ]; then
+        $TERMINAL_MULTIPLEXER
+    elif [ -n "$SSH_CONNECTION" ]; then
+        #fuck all
+        return 1
+    elif [ -n "$NO_X_TERMINAL_EMULATOR" ]; then
+        $NO_X_TERMINAL_EMULATOR
+    else
+        return 1
+    fi
+}
+
+
 #FIXME mksh won't use this?
 # reset this last so we don't get a bunch of bashrc in our history
 set -o history
