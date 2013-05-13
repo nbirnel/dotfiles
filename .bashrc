@@ -493,7 +493,7 @@ term() {
     elif [ -n "$WINDOW" ]; then
 #        screen -p $WINDOW mumble mumble #FIXME
     elif [ -n "$DISPLAY" ]; then
-        $X_TERMINAL_EMULATOR
+        $X_TERMINAL_EMULATOR             #FIXME this should cascade out
     elif [ -n "$TERMINAL_MULTIPLEXER" ]; then
         $TERMINAL_MULTIPLEXER
     elif [ -n "$SSH_CONNECTION" ]; then
