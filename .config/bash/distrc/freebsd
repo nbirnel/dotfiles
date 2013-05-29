@@ -1,9 +1,9 @@
 alias shutdownn='sudo shutdown -p now'
 alias shutdownr='sudo shutdown -r now'
 
-alias ntusb='sudo ntfs-3g /dev/da0s1 /media/usb/'
+alias ntusb='sudo ntfs-3g /dev/da0s1 /mnt/usb/'
 alias fatusb='mount -t msdosfs -o -m=644,-M=755 /dev/da0 /mnt/usb'
-alias unusb='sync && sudo /sbin/umount /media/usb'
+alias unusb='sync && sudo /sbin/umount /mnt/usb'
 
 alias paci='sudo pkg_add -r'
 
