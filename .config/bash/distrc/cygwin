@@ -114,7 +114,7 @@ if [ $? = 2 ]; then
    rm -rf "$SSH_AUTH_SOCK"
    # >| allows output redirection to over-write files if no clobber is set
    ssh-agent -a "$SSH_AUTH_SOCK" > /tmp/.ssh-script
-   source /tmp/.ssh-script
+   . /tmp/.ssh-script
    echo $SSH_AGENT_PID > ~/.ssh-agent-pid
    rm /tmp/.ssh-script
    ssh-add
