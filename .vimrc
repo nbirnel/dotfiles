@@ -73,6 +73,7 @@ set statusline+=%w               " preview flag
 set statusline+=%r               " readonly flag
 set statusline+=%y               " filetype in buffer
 set statusline+=%=               " everything after this on the right
+set statusline+=F\ %{&fo}\       " formatting options
 set statusline+=B\ %b\|0x%B\     " value|hex of byte under cursor
 set statusline+=C\ %c\|%v\       " column|virtual column
 set statusline+=L\ %l\/%L\       " line
