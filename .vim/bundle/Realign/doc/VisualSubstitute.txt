@@ -1,0 +1,33 @@
+*Realign.txt*	align on a regexp      Last change: 2012 Dec 20
+
+Like Align or Tabularize, but simpler.
+
+==============================================================================
+USAGE:						*RealignUsage*
+
+Default command is: >
+        :{Address}Realign [regex [column]]
+where column defaults to cursor position, and regex defaults to ' #'. You must
+quadruple any backslashes you need: >
+        :Realign \\\\" 45
+Will realign troff comments on column 45.
+
+
+==============================================================================
+LICENSE:					*RealignLicense*
+
+Do whatever you want with this plugin.
+
+==============================================================================
+CREDITS:					*RealignCredits*
+
+Written by Noah Birnel >
+        nbirnel at gmail dot com
+
+Inspired by Align.vim >
+        www.textpad.com
+    
+and by Tabularize.vim >
+        www.textpad.com
+    
+vim:tw=78:ts=8:ft=help:norl:

@@ -1,0 +1,27 @@
+*DateTime.txt*	Insert date or  time easily Last change: 2013 Jan 1
+
+Insert the date, date and time, or time with two to three keystrokes.
+
+==============================================================================
+USAGE:						*DateTimeUsage*
+
+Default keybindings are: >
+        <leader>d
+        <leader>t
+        <leader>T
+<
+for date, date and time, and time, respectively.
+<
+
+==============================================================================
+LICENSE:					*DateTimeLicense*
+
+Do whatever you want with this plugin.
+
+==============================================================================
+CREDITS:					*DateTimeCredits*
+
+Written by Noah Birnel >
+        nbirnel at gmail dot com
+
+vim:tw=78:ts=8:ft=help:norl:
