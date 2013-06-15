@@ -4,3 +4,6 @@
 [submodule ".vim/bundle/characterize"]
 	path = .vim/bundle/characterize
 	url = git://github.com/tpope/vim-characterize.git
+[submodule ".vim/bundle/screen"]
+	path = .vim/bundle/screen
+	url = git://github.com/ervandew/screen.git
