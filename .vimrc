@@ -314,6 +314,26 @@ cnoremap <Esc><C-B>	<S-Left>
                                  " forward one word
 cnoremap <Esc><C-F>	<S-Right>
 
+"" VIMSCREEN                      
+                                 " straight out of the help file
+function! s:ScreenShellListener()
+    if g:ScreenShellActive
+        nmap <C-c><C-c> :ScreenSend<cr>
+        abb <C-c><C-c> foo
+        nmap <C-c><C-x> :ScreenQuit<cr>
+    else
+        nmap <C-c><C-c> :ScreenShell<cr>
+    endif
+endfunction
+
+nmap <C-c><C-c> :ScreenShell<cr>
+augroup ScreenShellEnter
+    autocmd User * call <SID>ScreenShellListener()
+augroup END
+augroup ScreenShellExit
+    autocmd User * call <SID>ScreenShellListener()
+augroup END
+
 "" PER-MACHINE SETTINGS
 if filereadable(machinefile)
     exe 'source ' . machinefile
@@ -321,6 +341,3 @@ endif
 
 "" WRAP-UP
 set secure                       " important since we set modeline way above
-
-
-
