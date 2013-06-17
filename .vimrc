@@ -120,6 +120,8 @@ endif
 set ttimeout
 set notimeout
 
+                                 " make Y consistent with C and D
+nnoremap Y y$
                                  " see help displayed next to editing buffer
 nnoremap <leader>h :vert help     
 
@@ -187,6 +189,7 @@ nnoremap <leader>O O<esc>
                                  " titlecap current line or selection
 nnoremap <leader>t :s/\<\(\w\)\(\w*\)\>/\u\1\L\2/g<CR>
 vnoremap <leader>t :s/\%V\(\w\)\(\w*\)\%V/\u\1\L\2/g<CR>
+
 
                                  " wrap current word in quotes, braces, etc
 nnoremap <leader>i" viw<esc>a"<esc>hbi"<esc>lel
