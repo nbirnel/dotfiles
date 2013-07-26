@@ -330,6 +330,7 @@ mkcd() {
 }
 
 _follow_funs_helper() {
+    #FIXME fails weirdly on carrybk spec-dirs-3rd-pass if no $OLDPWD
     action=$1
     shift
     if [ $1 = back ]; then
