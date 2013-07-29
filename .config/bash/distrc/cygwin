@@ -60,6 +60,8 @@ paco() {
 
 #FIXME use setup.exe for paci and pacr
 
+alias nppr='pr -3 -t -l 65'
+
 mkdest() {
     if [ $# -gt 0 ]; then
         mkdir -p "$@" && cd "$@" || return 1
