@@ -90,7 +90,7 @@ open() {
 
 #FIXME it fails on the space
 #alias xl='/cygdrive/c/Program Files/Microsoft Office/Office14/EXCEL.EXE'
-umask 0022
+umask 0000
 
 locof() {
     cygpath -w "$(readlink -f "$@")"
