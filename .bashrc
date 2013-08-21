@@ -107,10 +107,12 @@ type -p firefox >/dev/null && export BROWSER=$(type -p firefox) && export BROWSE
 MAIL=/var/spool/mail/noah             && export export MAIL
 
 if [ -d /opt/plan9 ]; then
-    PLAN9=/opt/plan9 && export PLAN9
+    PLAN9=/opt/plan9 && export PLAN9 
 elif [ -d /usr/local/plan9 ]; then
     PLAN9=/usr/local/plan9 && export PLAN9
 fi
+test -n $PLAN9 && export PATH=$PATH:$PLAN9/bin
+
 
 #FIXME mksh type is an alias for whence - use which?
 # reminders!
