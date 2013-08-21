@@ -109,7 +109,7 @@ MAIL=/var/spool/mail/noah             && export export MAIL
 if [ -d /opt/plan9 ]; then
     PLAN9=/opt/plan9 && export PLAN9
 elif [ -d /usr/local/plan9 ]; then
-    PLAN9=/opt/plan9 && export PLAN9
+    PLAN9=/usr/local/plan9 && export PLAN9
 fi
 
 #FIXME mksh type is an alias for whence - use which?
