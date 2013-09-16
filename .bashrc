@@ -161,9 +161,6 @@ case "$(uname)" in
     ARCH)
         _DISTRC="$_BASH_DIST_CONFIGDIR/archlinux"
         ;;
-    debian)
-        _DISTRC="$_BASH_DIST_CONFIGDIR/debian"
-        ;;
     FreeBSD)
         _DISTRC="$_BASH_DIST_CONFIGDIR/freebsd"
         ;;
@@ -182,6 +179,7 @@ case "$(uname)" in
 esac
 
 which zypper 1>/dev/null 2>/dev/null && _DISTRC="$_BASH_DIST_CONFIGDIR/suse"
+which apt-get 1>/dev/null 2>/dev/null && _DISTRC="$_BASH_DIST_CONFIGDIR/debian"
 
 _LOCALRC="$_BASH_LOCAL_CONFIGDIR/$(hostname)"
 
