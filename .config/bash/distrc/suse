@@ -1,0 +1,19 @@
+alias paci='sudo zypper install'
+alias pacr='sudo zypper remove'
+alias pacud='sudo zypper update'
+alias pacug='sudo zypper dist-upgrade'
+alias pacs='zypper search'
+alias pacl='rpm -ql'
+
+# So stupid. Otherwise Suse wants to know what man page I am looking for.
+MAN_POSIXLY_CORRECT=1; export MAN_POSIXLY_CORRECT
+
+# Otherwise Suse BEEPS at me. 
+xset -b
+
+# And the jerks have already aliased .. and ...
+alias ..  2>/dev/null >/dev/null && unalias ..
+alias ... 2>/dev/null >/dev/null && unalias ...
+
+_OSRC="$_BASH_OS_CONFIGDIR/linux"
+# vim:ft=sh

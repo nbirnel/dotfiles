@@ -1,0 +1,30 @@
+" vim: set ft=pentadactyl:
+
+loadplugins '\.(js|penta)$'
+group user
+set showtabline=never
+
+"no dumb gui stuff
+set guioptions=''
+
+"no dumb tabs
+set showtabline=never
+
+"don't jump to new tab on P, but do on gP
+set activate-=paste
+
+"don't jump to new tab on tabopen
+set activate-=tabopen
+
+"go home
+cd ~
+
+"highlight searches. Use :set nohlfind to turn off
+set hlfind
+
+"new tabs opened for anything
+set newtab=all
+
+set runtimepath="~/.pentadactyl"
+
+" vim: set ft=pentadactyl:
