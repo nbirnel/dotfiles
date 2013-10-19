@@ -82,9 +82,8 @@ fi
 # start some nice programs
 
 test $(which xsetroot) && xsetroot -solid midnightblue &
-#test $(which numlockx) && numlockx on &
 test $(which unclutter) && unclutter &
-test $(which uxterm) && uxterm &
+test $(which st) && st &
 test $(which conky) && conky &
 
 test -f "$HOME/.config/xinit/u/$(uname)" && . "$HOME/.config/xinit/u/$(uname)"
