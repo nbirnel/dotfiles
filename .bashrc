@@ -489,6 +489,8 @@ authme() {
       ssh "$@" 'cat - >>"$HOME/.ssh/authorized_keys"'
 }
 
+export X_TERMINAL_EMULATOR=uxterm
+
 term() {
     if [ -n "$TMUX" ]; then
         tmux split-window -h

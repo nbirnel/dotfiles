@@ -24,7 +24,6 @@ alias paco='sudo pkg_info -W'
 alias xo='xclip -o'
 alias xi='xclip -i'
 
-export X_TERMINAL_EMULATOR=uxterm
 export TERMINAL_MULTIPLEXER=tmux
 
 _OSRC="$_BASH_OS_CONFIGDIR/bsd"
