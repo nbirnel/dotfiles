@@ -10,6 +10,9 @@ alias d2u='dos2unix --d2u'
 
 export TERMINAL_MULTIPLEXER=tmux
 
+myip() {
+    sudo ifconfig | sed -n '/^eth/,/^lo/s/\s*inet addr:\s*\([0-9.]*\).*/\1/p'
+}
+
 . $_BASH_DIST_CONFIGDIR/gnu
 # vim:ft=sh
-
