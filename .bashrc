@@ -490,6 +490,10 @@ authme() {
       ssh "$@" 'cat - >>"$HOME/.ssh/authorized_keys"'
 }
 
+githubfetch() {
+    git clone git@github.com:nbirnel/"$1".git
+}
+
 export X_TERMINAL_EMULATOR=uxterm
 
 term() {
