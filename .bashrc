@@ -40,6 +40,12 @@ _cyan='\[\e[36m\]'
 _white='\[\e[37m\]'
 _contrast="$_white"
 
+if test -n "$SSH_CONNECTION"; then
+    _ssh="$_orange($(echo $SSH_CONNECTION | awk '{ printf("%s->%s", $1, $3) }')) "
+else
+    _ssh=""
+fi
+
 _prompt_command() {
     if test $? = 0; then
         _error="$_green"
@@ -50,11 +56,6 @@ _prompt_command() {
     #FIXME mksh probably doesn't have this
     # append history after each command
     history -a
-    if test -n "$SSH_CONNECTION"; then
-        _ssh="$_orange($(echo $SSH_CONNECTION | cut -d' ' -f1)) "
-    else
-        _ssh=""
-    fi
 
     _title="$PWD"
     echo -ne '\e]0;'"$_title"'\a'
