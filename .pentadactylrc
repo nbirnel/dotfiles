@@ -1,8 +1,9 @@
 " vim: set ft=pentadactyl:
 
+set runtimepath="~/.pentadactyl"
+
 loadplugins '\.(js|penta)$'
 group user
-set showtabline=never
 
 "no dumb gui stuff
 set guioptions=''
@@ -25,6 +26,3 @@ set hlfind
 "new tabs opened for anything
 set newtab=all
 
-set runtimepath="~/.pentadactyl"
-
-" vim: set ft=pentadactyl:
