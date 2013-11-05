@@ -10,7 +10,6 @@ umask 0022          # everyone can use my files by default!
 [ -z $BASHRC_HAS_RUN ] \
     && PATH="$HOME/bin:/bin:/usr/local/bin:/usr/bin:$PATH"
 BASHRC_HAS_RUN=1                  && export BASHRC_HAS_RUN
-export PATH
 
 #FIXME mksh has no shopt
 # check the window size after each command and, if necessary,
@@ -112,7 +111,7 @@ if [ -d /opt/plan9 ]; then
 elif [ -d /usr/local/plan9 ]; then
     PLAN9=/usr/local/plan9 && export PLAN9
 fi
-test -n $PLAN9 && export PATH=$PATH:$PLAN9/bin
+test -n $PLAN9 && PATH=$PATH:$PLAN9/bin
 
 
 #FIXME mksh type is an alias for whence - use which?
@@ -515,4 +514,5 @@ term() {
 
 #FIXME mksh won't use this?
 # reset this last so we don't get a bunch of bashrc in our history
+export PATH
 set -o history
