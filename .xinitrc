@@ -28,7 +28,6 @@ fi
 # This script is called from 'startx' when you start an X session
 
 
-
 # In case everything goes wrong, we at least fall back to a plain xterm
 
 #failsafe="uxterm -ls -T Failsafe -geometry 80x24-0-0"
@@ -80,6 +79,7 @@ fi
 # end Suse
 
 # start some nice programs
+eval $(ssh-agent)
 
 test $(which xsetroot) && xsetroot -solid midnightblue &
 test $(which unclutter) && unclutter &
