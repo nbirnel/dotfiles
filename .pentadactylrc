@@ -1,0 +1,31 @@
+" vim: set ft=pentadactyl:
+
+set runtimepath="~/.pentadactyl"
+
+loadplugins '\.(js|penta)$'
+group user
+
+"no dumb gui stuff
+set guioptions=''
+
+"no dumb tabs
+set showtabline=never
+
+"don't jump to new tab on P, but do on gP
+set activate-=paste
+
+"don't jump to new tab on tabopen
+set activate-=tabopen
+
+"go home
+cd ~
+
+"highlight searches. Use :set nohlfind to turn off
+set hlfind
+
+"new tabs opened for anything
+set newtab=all
+
+"gross work-around to keep gmail keybindings working
+set strictfocus='chrome:*':laissez-faire,*:laissez-faire
+set passkeys+=mail.google.com:'!#*+-./<C-Down><C-s><Enter>?INU[]acefjk lmnopqrsuvxyz',*a,*n,*r,*s,*t,*u,ga,gc,gd,gi,gl,gs,gt,yo

@@ -1,0 +1,22 @@
+# pacman aliases
+alias paci='sudo pacman -S'
+alias pacr='sudo pacman -R'
+alias pacud='sudo pacman -Sy'
+alias pacug='sudo pacman -Su'
+alias pacs='pacman -Ss'
+
+# yaourt aliases
+alias yaoi='yaourt -S'
+alias yaor='yaourt -R'
+alias yaoud='yaourt -Sy'
+alias yaoug='yaourt -Su'
+alias yaos='yaourt -Ss'
+
+alias usb='sudo $HOME/bin/usb'
+alias unusb='sudo $HOME/bin/unusb'
+
+alias ntfs1='sudo ntfs-3g /dev/sdb /media/usb1'
+alias ntfs2='sudo ntfs-3g /dev/sdb1 /media/usb1'
+
+_OSRC="$_BASH_OS_CONFIGDIR/linux"
+# vim:ft=sh

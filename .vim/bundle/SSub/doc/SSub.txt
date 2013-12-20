@@ -1,0 +1,42 @@
+*SSub.txt*	quick substituting text      Last change: 2013 Jan 26
+
+Provides speedy techniques for using visual selections, registers or 
+directories to substitute to or from. Inspired by the one bit that Textpad does
+better than Vim.
+
+==============================================================================
+USAGE:						*SSubUsage*
+
+Default keybindings are: >
+        <leader>s<leftsub><rightsub>
+where leftsub and rightsub are any of: >
+        v  visual selection
+        n  nothing
+        c  current working directory
+        w  current working directory, in windows form (only on cygwin)
+        rN register N
+<
+
+==============================================================================
+LICENSE:					*SSubLicense*
+
+Do whatever you want with this plugin.
+
+==============================================================================
+CREDITS:					*SSubCredits*
+
+Written by Noah Birnel >
+        nbirnel at gmail dot com
+
+Inspired by the <F8> command in Textpad
+        www.textpad.com
+    
+Escaping was lifted indirectly from Peter Odding >
+	http://peterodding.com/code/vim/profile/autoload/xolox/escape.vim
+>
+via Brian Kennedy's answer on >
+	http://stackoverflow.com/questions/676600/
+	vim-replace-selected-text/677918#677918
+>
+
+vim:tw=78:ts=8:ft=help:norl:
