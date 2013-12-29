@@ -82,7 +82,11 @@ fi
 eval $(ssh-agent)
 
 test $(which xsetroot) && xsetroot -solid midnightblue &
-test $(which unclutter) && unclutter &
+if [ $(which xbanish) ]; then
+    xbanish &    # https://github.com/jcs/xbanish
+elif [ $(which unclutter) ]; then
+    unclutter &
+fi
 test $(which st) && st &
 test $(which conky) && conky &
 
