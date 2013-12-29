@@ -6,6 +6,7 @@
 # *~
 /*~
 *stackdump
+/*
 
 !/.Xdefaults
 !/.Xresources
@@ -23,6 +24,9 @@
 /.config/gitp/dot/info/*
 !/.config/gitp/dot/info/exclude
 !/.config/vim/
+!/.config/xfce4/
+/.config/xfce4/*
+!/.config/xfce4/terminal/
 !/.config/xinit/
 /.config/xinit/host/
 !/.config/user-dirs.dirs
@@ -70,4 +74,3 @@
 !/.yast2/
 
 !/README.md
-*

@@ -516,3 +516,4 @@ term() {
 # reset this last so we don't get a bunch of bashrc in our history
 export PATH
 set -o history
+
