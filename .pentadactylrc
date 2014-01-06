@@ -5,8 +5,8 @@ set runtimepath="~/.pentadactyl"
 loadplugins '\.(js|penta)$'
 group user
 
-"no dumb gui stuff
-set guioptions=''
+"no dumb gui stuff, but number tabs if and when we show them
+set guioptions='n'
 
 "no dumb tabs
 set showtabline=never
