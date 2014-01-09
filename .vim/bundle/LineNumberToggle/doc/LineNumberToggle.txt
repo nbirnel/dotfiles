@@ -1,0 +1,26 @@
+*LineNumberToggle.txt*	For Vim version 7.3	Last change: 2013 Jan 1
+
+Toggles between numbering options.
+|relativenumber|
+|number|
+|nonumber|
+    
+==============================================================================
+USAGE:						*LineNumberToggleUsage*
+
+Default keybinding is: >
+        <leader>n
+<
+
+==============================================================================
+LICENSE:					*LineNumberToggleLicense*
+
+Do whatever you want with this plugin.
+
+==============================================================================
+CREDITS:					*LineNumberToggleCredits*
+
+Written by Noah Birnel >
+        nbirnel at gmail dot com
+
+vim:tw=78:ts=8:ft=help:norl:

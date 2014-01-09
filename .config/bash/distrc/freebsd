@@ -1,0 +1,31 @@
+alias shutdownn='sudo shutdown -p now'
+alias shutdownr='sudo shutdown -r now'
+
+alias ntusb='sudo ntfs-3g /dev/da0s1 /mnt/usb/'
+alias fatusb='mount -t msdosfs -o -m=644,-M=755 /dev/da0 /mnt/usb'
+alias unusb='sync && sudo /sbin/umount /mnt/usb'
+
+alias paci='sudo pkg_add -r'
+
+pacl() {
+    _pkgdir=/var/db/pkg
+    pkg_info -L $(ls -d "$_pkgdir/$1-"*)
+    unset _pkgdir
+}
+
+pacr() {
+    pkgdir=/var/db/pkg
+    sudo pkg_delete -i $(ls -d "$pkgdir/$1-"*)
+    unset _pkgdir
+}
+
+alias paco='sudo pkg_info -W'
+
+alias xo='xclip -o'
+alias xi='xclip -i'
+
+export TERMINAL_MULTIPLEXER=tmux
+
+_OSRC="$_BASH_OS_CONFIGDIR/bsd"
+# vim:ft=sh
+

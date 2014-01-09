@@ -1,15 +1,15 @@
 #FIXME PS1 not in mksh
-[ -z "$PS1" ] && return # Check for an interactive session
+[ -z "$PS1" ] && return         # Check for an interactive session
 
 #FIXME set has different opts in mksh
-unset MAILCHECK # no "You have mail in ..."
+unset MAILCHECK                 # no "You have mail in ..."
 
-umask 0022 # everyone can use my files by default!
+umask 0022          # everyone can use my files by default!
 
 #FIXME not bashrc - profile?
 [ -z $BASHRC_HAS_RUN ] \
     && PATH="$HOME/bin:/bin:/usr/local/bin:/usr/bin:$PATH"
-BASHRC_HAS_RUN=1 && export BASHRC_HAS_RUN
+BASHRC_HAS_RUN=1                  && export BASHRC_HAS_RUN
 
 #FIXME mksh has no shopt
 # check the window size after each command and, if necessary,
@@ -40,16 +40,16 @@ _white='\[\e[37m\]'
 _contrast="$_white"
 
 if test -n "$SSH_CONNECTION"; then
-_ssh="$_orange($(echo $SSH_CONNECTION | awk '{ printf("%s->%s", $1, $3) }')) "
+    _ssh="$_orange($(echo $SSH_CONNECTION | awk '{ printf("%s->%s", $1, $3) }')) "
 else
-_ssh=""
+    _ssh=""
 fi
 
 _prompt_command() {
     if test $? = 0; then
-_error="$_green"
+        _error="$_green"
     else
-_error="$_red"
+        _error="$_red"
     fi
 
     #FIXME mksh probably doesn't have this
@@ -60,7 +60,7 @@ _error="$_red"
     echo -ne '\e]0;'"$_title"'\a'
 
     _time="$(date '+%H:%M %a %b %d')"
-   # user host where
+   #                             user host   where        
     PS1="$_ps_pref$_ssh$_maroon$_time $_blue\u@\h $_contrast\w $_error\$\n$_off"
 }
     
@@ -68,21 +68,21 @@ _error="$_red"
 #FIXME make colors vars :
 # _maroon='\[\e[35m\]'
 # _time='\@'
-#case $TERM in
-#        cons* )
-# MAROON time date BLUE user host RED directory prompt WHITE
-#        PS1="\[\e[35m\]\@ \d \[\e[34m\]\u@\h \[\e[31m\]\w\[\e[31m\]\n\$\[\e[37m\]"
-#        ;;
-#        cygwin* )
-# MAROON time date BLUE user host RED directory prompt WHITE
-#        PS1="\[\e[35m\]\@ \d \[\e[34m\]\u@\h \[\e[31m\]\w\[\e[31m\]\n\$\[\e[37m\]"
-#        ;;
-#        * )
-# MAROON time date BLUE user host RED directory prompt WHITE
-#        PS1="\[\e[35m\]\@ \d \[\e[34m\]\u@\h \[\e[31m\]\w\[\e[31m\]\n\$\[\e[37m\]"
-# MAROON time date BLUE user host RED directory prompt BLACK
-#        PS1="\[\e[35m\]\@ \d \[\e[34m\]\u@\h \[\e[31m\]\w\[\e[31m\]\n\$\[\e[30m\]"
-#        ;;
+#case $TERM in 
+#	cons* )
+#        MAROON  time date BLUE  user host  RED  directory    prompt  WHITE
+#	PS1="\[\e[35m\]\@ \d \[\e[34m\]\u@\h \[\e[31m\]\w\[\e[31m\]\n\$\[\e[37m\]"
+#	;;
+#	cygwin* )
+#        MAROON  time date BLUE  user host  RED  directory    prompt  WHITE
+#	PS1="\[\e[35m\]\@ \d \[\e[34m\]\u@\h \[\e[31m\]\w\[\e[31m\]\n\$\[\e[37m\]"
+#	;;
+#	* )
+#        MAROON  time date BLUE  user host  RED  directory    prompt  WHITE
+#	PS1="\[\e[35m\]\@ \d \[\e[34m\]\u@\h \[\e[31m\]\w\[\e[31m\]\n\$\[\e[37m\]"
+#        MAROON  time date BLUE  user host  RED  directory    prompt  BLACK
+#	PS1="\[\e[35m\]\@ \d \[\e[34m\]\u@\h \[\e[31m\]\w\[\e[31m\]\n\$\[\e[30m\]"
+#	;;
 #esac
 
 #}
@@ -93,23 +93,23 @@ PROMPT_COMMAND=_prompt_command
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
 #if [ -f /etc/bash_completion ]; then
-# . /etc/bash_completion
+#    . /etc/bash_completion
 #fi
 
 #environmental variables
 
 #FIXME mksh type is an alias for whence - use which?
-type -p vim >/dev/null && export EDITOR=$(type -p vim) && export EDITOR
+type -p vim >/dev/null && export EDITOR=$(type -p vim)     && export EDITOR
 type -p vim >/dev/null && export GIT_EDITOR=$(type -p vim) && export GIT_EDITOR
-type -p less >/dev/null && export PAGER=$(type -p less) && export PAGER
-type -p vim >/dev/null && export VISUAL=$(type -p vim) && export VISUAL
+type -p less >/dev/null && export PAGER=$(type -p less)    && export PAGER
+type -p vim >/dev/null && export VISUAL=$(type -p vim)       && export VISUAL
 type -p firefox >/dev/null && export BROWSER=$(type -p firefox) && export BROWSER
-MAIL=/var/spool/mail/noah && export export MAIL
+MAIL=/var/spool/mail/noah             && export export MAIL
 
 if [ -d /opt/plan9 ]; then
-PLAN9=/opt/plan9 && export PLAN9
+    PLAN9=/opt/plan9 && export PLAN9 
 elif [ -d /usr/local/plan9 ]; then
-PLAN9=/usr/local/plan9 && export PLAN9
+    PLAN9=/usr/local/plan9 && export PLAN9
 fi
 test -n $PLAN9 && PATH=$PATH:$PLAN9/bin
 
@@ -142,7 +142,7 @@ PATH=$PATH:/usr/local/lib/surfraw
 SCREENDIR=$HOME/.screen; export SCREENDIR
 
 #nosql setenv overwrites path
-#eval $(nosql setenv)
+#eval $(nosql setenv) 
 TMPDIR=/tmp
 NOSQL_CHARSET=utf-8
 NOSQL_INSTALL=/usr/local/nosql
@@ -194,43 +194,43 @@ alias vimrcl='vim "+set ft=sh" "$_LOCALRC"'
 
 # cd aliases
 
-..() {
-    if [ -n "$1" ]; then cd ../"$1"; # one move so "cd -" still good
+..() { 
+    if [ -n "$1" ]; then cd ../"$1";  # one move so "cd -" still good
     else cd ..;
     fi
 }
 
-...() {
+...() { 
     if [ -n "$1" ]; then cd ../../"$1";
     else cd ../..;
     fi
 }
 
-....() {
+....() { 
     if [ -n "$1" ]; then cd ../../../"$1";
     else cd ../../..;
     fi
 }
 
-.....() {
+.....() { 
     if [ -n "$1" ]; then cd ../../../../"$1";
     else cd ../../../..;
     fi
 }
 
-......() {
+......() { 
     if [ -n "$1" ]; then cd ../../../../../"$1";
     else cd ../../../../..;
     fi
 }
 
-.......() {
+.......() { 
     if [ -n "$1" ]; then cd ../../../../../../"$1";
     else cd ../../../../../..;
     fi
 }
 
-........() {
+........() { 
     if [ -n "$1" ]; then cd ../../../../../../../"$1";
     else cd ../../../../../../..;
     fi
@@ -271,10 +271,10 @@ c( ) {
    # sed.
    dir="$@"
 
-   # Append * to non-dot sequences, change spaces to *, translate dots to /
+   # Append * to non-dot sequences, change spaces to *, translate dots to / 
    # and add
    # final "/." to be sure this only matches a directory:
-   dirpat="$(echo $dir | sed 's#\([^.][^.]*\)#\1*#g; s/ */*/g' | tr . /)/."
+   dirpat="$(echo $dir | sed 's#\([^.][^.]*\)#\1*#g; s/  */*/g' | tr . /)/."
 
    # In case $dirpat is empty, set dummy "x" then shift it away:
    set x $dirpat; shift
@@ -284,35 +284,36 @@ c( ) {
       # pattern didn't match (shell didn't expand it)
       echo "c: no match for $dirpat" 1>&2
    elif [ $# = 1 ]; then
-cd "$1"
+      cd "$1"
    else
-echo "c: too many matches for $dir:" 1>&2
+      echo "c: too many matches for $dir:" 1>&2
       ls -d "$@"
    fi
 
-unset dir dirpat
+   unset dir dirpat
 }
 
 cm() {
     if [ -n "$dest" ]; then
-_tmp_dest="$dest"
+        _tmp_dest="$dest"
         _reset_dest=1
     fi
-dest="$(mo $@)"
+    
+    dest="$(mo $@)"
     [ "$?" -ne 0 ] && unset dest && return 1
     if [ -z "$dest" ]; then
-echo "$@ is an empty mark."
+        echo "$@ is an empty mark."
         unset dest
         return 1
     elif [ ! -d "$dest" ]; then
-echo "$dest is not a directory."
+        echo "$dest is not a directory."
         unset dest
         return 1
     else
-cd "$dest"
+        cd "$dest"
     fi
 
-unset dest
+    unset dest
     [ "$_reset_dest" ] && dest="$_tmp_dest" && unset _tmp_dest
 }
 
@@ -333,36 +334,36 @@ _follow_funs_helper() {
     #FIXME fails weirdly on carrybk spec-dirs-3rd-pass if no $OLDPWD
     action=$1
     shift
-if [ $1 = back ]; then
-_dest="$OLDPWD"
+    if [ $1 = back ]; then
+        _dest="$OLDPWD"
         shift
-elif [ $1 = last ]; then #this ludicrous thing
-        shift #strips off the last arg.
+    elif [ $1 = last ]; then      #this ludicrous thing
+        shift                     #strips off the last arg.
         argc=0
 
         for arg; do
-case $arg in
+            case $arg in 
               *) eval arg_$argc=\$arg
                  argc=$(expr $argc + 1)
                  ;;
             esac
-done
+        done
 
-eval "_dest=\${$#}"
+        eval "_dest=\${$#}"
 
         shift $#
         argc=$(expr $argc - 1)
 
         while test $argc -gt 0; do
-argc=$(expr $argc - 1)
+            argc=$(expr $argc - 1)
             eval 'set -- "$arg_'$argc'" "$@"'
             unset arg_$argc
         done
-fi
+    fi
 
     $action "$@" "$_dest" && {
         if [ -d "$_dest" ]; then
-cd "$_dest"
+            cd "$_dest"
         else
             #what is this sed thing? shouldn't we bail?
             #anyway, ? and + are not portable.
@@ -407,28 +408,28 @@ savehist() {
 #alias pgens='pwgen -n -c -y -s 8 1' #one number, one upper, one non-alnum, 'secure'
 spgen() {
     if [ $# = 1 ]; then
-len=$1
+        len=$1
         num=1
     elif [ $# = 2 ]; then
-len=$1
+        len=$1
         num=$2
     else
-len=8
+        len=8
         num=1
     fi
     #one number, one upper, one non-alnum, one per line, secure
-    pwgen -n -c -y -1 -s $len $num
+    pwgen -n -c -y -1 -s $len $num 
 }
 
 pgen() {
     if [ $# = 1 ]; then
-len=$1
+        len=$1
         num=1
     elif [ $# = 2 ]; then
-len=$1
+        len=$1
         num=$2
     else
-len=8
+        len=8
         num=1
     fi
     #one number, one upper, one non-alnum, one per linee
@@ -441,10 +442,10 @@ filect() {
 
 gitp() {
     while [ $# -gt 0 ]; do
-case "$1" in
+        case "$1" in
           -ls)
-            shift
-ls "$HOME/.config/gitp"
+            shift 
+            ls "$HOME/.config/gitp"
             return
             ;;
           --edit-config)
@@ -457,13 +458,13 @@ ls "$HOME/.config/gitp"
             ;;
           --scp-config)
             remote="$(gitp "$2" remote show -n "$3" |\
-sed -n 's/ *Fetch URL: *//p')"
+                      sed -n 's/ *Fetch URL: *//p')"
             scp "$remote/config" "$HOME/.config/gitp/$2/"
             return $?
             ;;
           --scp-exclude)
             remote="$(gitp "$2" remote show -n "$3" |\
-sed -n 's/ *Fetch URL: *//p')"
+                      sed -n 's/ *Fetch URL: *//p')"
             scp "$remote/info/exclude" "$HOME/.config/gitp/$2/info/"
             return $?
             ;;
@@ -475,7 +476,7 @@ sed -n 's/ *Fetch URL: *//p')"
             break
             ;;
         esac
-done
+    done
 
     #dot, doc, personal, secure, work, work-secure
     dir="$1"
@@ -496,10 +497,10 @@ export X_TERMINAL_EMULATOR=uxterm
 
 term() {
     if [ -n "$TMUX" ]; then
-tmux split-window -h
+        tmux split-window -h
     elif [ -n "$WINDOW" ]; then
         #screen -p $WINDOW -X split
-        screen
+        screen 
     elif [ -n "$DISPLAY" ]; then
         $X_TERMINAL_EMULATOR &
     elif [ -n "$NO_X_TERMINAL_EMULATOR" ]; then
@@ -507,7 +508,7 @@ tmux split-window -h
     elif [ -n "$TERMINAL_MULTIPLEXER" ]; then
         $TERMINAL_MULTIPLEXER
     else
-return 1
+        return 1
     fi
 }
 
@@ -515,3 +516,5 @@ return 1
 # reset this last so we don't get a bunch of bashrc in our history
 export PATH
 set -o history
+
+
