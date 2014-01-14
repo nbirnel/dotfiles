@@ -75,12 +75,14 @@ UXTerm*toolBar: false
 XTerm*toolBar: false
 *XTerm*toolBar: false
 *XTerm*scrollBar: false
-*xterm*font: -*-lucidatypewriter-medium-r-normal-*-18-*-*-*-*-*-*-*
+!!*xterm*font: -*-lucidatypewriter-medium-r-normal-*-18-*-*-*-*-*-*-*
+*xterm*font: -*-dejavu sans mono-medium-r-normal-*-*-*-*-*-*-*-*
 !!*xterm*font: -*-terminus-medium-r-*-*-16-*-*-*-*-*-*
 !!*xterm*font: -*-liberation mono-medium-r-normal-*-17-*-*-*-*-*-*
 !!*xterm*font: -misc-dejavu sans mono-medium-r-normal-*-*-*-*-m-*-*-*
 
-*rxvt.font:            Lucida Console-14
+!!*rxvt.font:            Lucida Console-14
+*rxvt*font: -*-dejavu sans mono-medium-r-normal-*-*-*-*-*-*-*-*
 *rxvt.boldFont:        Lucida Console-14
 *rxvt.scrollBar:       False
 *rxvt.visualBell:      True
