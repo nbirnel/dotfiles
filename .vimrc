@@ -211,7 +211,7 @@ vnoremap <leader>i( <esc>a)<esc>`<i(<esc>`>l
 vnoremap <leader>i[ <esc>a]<esc>`<i[<esc>`>l
 vnoremap <leader>i{ <esc>a}<esc>`<i{<esc>`>l
 
-call AutoSurroundStart()         " make matching ) for (, like Sublime Text 2
+call autosurround#autosurroundstart()         " make matching ) for (, like Sublime Text 2
 
 "" TEXT-OBJECTS
                                  "in( = in next parens

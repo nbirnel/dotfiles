@@ -1,6 +1,6 @@
 " make matching ) for (, like Sublime Text 2
 
-function! AutoSurroundStart()
+function! autosurround#autosurroundstart()
     inoremap " ""<esc>i
     inoremap ' ''<esc>i
     inoremap < <><esc>i
