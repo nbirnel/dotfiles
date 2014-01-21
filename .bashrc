@@ -490,7 +490,9 @@ authme() {
 }
 
 githubfetch() {
-    git clone git@github.com:nbirnel/"$1".git
+    for i in "$@"; do
+        git clone git@github.com:nbirnel/"$i".git
+    done
 }
 
 export X_TERMINAL_EMULATOR=uxterm
