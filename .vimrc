@@ -190,6 +190,9 @@ nnoremap <leader>O O<esc>
 nnoremap <leader>t :s/\<\(\w\)\(\w*\)\>/\u\1\L\2/g<CR>
 vnoremap <leader>t :s/\%V\(\w\)\(\w*\)\%V/\u\1\L\2/g<CR>
 
+                                 " decamel current line or selection
+nnoremap <leader>c :s/\([a-z0-9]\)\([A-Z]\)/\1_\2/g<CR>
+vnoremap <leader>c :s/\%V\([a-z0-9]\)\([A-Z]\)/\1_\2/g<CR>
 
                                  " wrap current word in quotes, braces, etc
 nnoremap <leader>i" viw<esc>a"<esc>hbi"<esc>lel
