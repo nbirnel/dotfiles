@@ -321,8 +321,22 @@ shc() {
     echo "scale=9;$@" | bc
 }
 
+
+#FIXME make dmenu or pick (from UPE) depending on [ -z "$DISPLAY" ]
+r() {
+    history | tail | sed 's/[-0-9: ]*//' | uniq | dmenu -l 10
+}
+
 h() {
-    history | tail -r | sed 's/ *[1-9][0-9]* *//;/^#/d;1d' | dmenu -b
+    history | sed 's/[-0-9: ]*//' | sort -u | dmenu -l 30
+}
+
+rx() {
+    $(r)
+}
+
+hx() {
+    $(h)
 }
 
 mkcd() {
