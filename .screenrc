@@ -101,8 +101,11 @@ bind } history
 altscreen on
 #save running screen session on hangup. On by default?
 autodetach on
+
 #otherwise we get sh, or must define $SHELL
-shell /usr/bin/bash
+#since /bin/bash isn't on bsd, and /usr/bin/bash isn't on linux, forget it
+#Then again I don't want to define shell. I don't know the answer here.
+shell /bin/bash 
 #FIXME this doesn't do what I thought
 time
 #eh, why not?
