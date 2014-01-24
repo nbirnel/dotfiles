@@ -496,6 +496,7 @@ githubfetch() {
 }
 
 export X_TERMINAL_EMULATOR=uxterm
+export TERM=xterm-256color
 
 term() {
     if [ -n "$TMUX" ]; then
