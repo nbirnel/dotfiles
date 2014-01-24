@@ -1,4 +1,4 @@
-function! PlainText()
+function! HelpText()
     silent new
     let s:help ="]s and [s to go to mispelled or unusual word.\n
   \]S and [S to go to mispelled word.\]S and [S to go to mispelled word.\n
@@ -17,6 +17,10 @@ function! PlainText()
     silent 0put =s:help
 
     wincmd k
+    call PlainText()
+endfunction
+
+function! PlainText()
     syntax off
     setlocal textwidth=78
     setlocal filetype=text
@@ -24,6 +28,10 @@ function! PlainText()
     setlocal noautoindent
     setlocal nosmartindent
     setlocal spelllang=en_us
-    setlocal spellfile=teris.add
 endfunction
 
+function! SQLText()
+    call PlainText()
+    setlocal textwidth=256
+    setlocal colorcolumn=257
+endfunction
