@@ -242,6 +242,13 @@ augroup filetype_vimhelp
     autocmd FileType help setlocal iskeyword+=-
 augroup END
 
+                                 " the fashion amongst rubyists
+augroup filetype_ruby
+    autocmd!
+    autocmd FileType ruby setlocal tabstop=2
+    autocmd FileType ruby setlocal shiftwidth=2
+augroup END
+
                                  " vim scripts need help
 augroup filetype_vimscript
     autocmd!
