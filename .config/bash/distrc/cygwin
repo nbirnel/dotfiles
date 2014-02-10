@@ -93,7 +93,13 @@ open() {
 umask 0000
 
 locof() {
+    # default to pwd
+    [ "$#" -eq 0 ] && set "."
     cygpath -w "$(readlink -f "$@")"
+}
+
+tc() {
+    locof "$@" >/dev/clipboard
 }
 
 myip() {
