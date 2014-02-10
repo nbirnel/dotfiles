@@ -157,7 +157,7 @@ set undofile                     " keep an undo file even after closing
 set undodir=~/.vim/undo          " where to put undo files
 
                                  " save every time the window loses focus
-autocmd FocusLost * :bufdo call s:WriteFileBuffers()
+"autocmd FocusLost * :bufdo call s:WriteFileBuffers()
 
 function! s:WriteFileBuffers()
     if len(expand("%")) > 0  
