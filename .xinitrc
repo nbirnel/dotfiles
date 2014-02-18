@@ -87,7 +87,7 @@ if [ $(which xbanish) ]; then
 elif [ $(which unclutter) ]; then
     unclutter &
 fi
-test $(which st) && st &
+test $(which st) && st -e $(which bash) --login &
 test $(which conky) && conky &
 
 test -f "$HOME/.config/xinit/u/$(uname)" && . "$HOME/.config/xinit/u/$(uname)"
