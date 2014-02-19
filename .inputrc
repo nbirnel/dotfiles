@@ -1,0 +1,68 @@
+# direction arrows move through matches of command
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+"\e[C": forward-char
+"\e[D": backward-char
+
+# default in emacs and vi-command, but not in vi-insert
+Control-e: emacs-editing-mode
+Control-g: abort
+Control-k: kill-line
+Control-l: clear-screen
+Control-m: accept-line
+Control-n: next-history
+Control-p: previous-history
+Control-q: quoted-insert
+
+# append slash to completed directory names
+set mark-directories on
+
+# one tab shows completion
+set show-all-if-ambiguous on
+
+# silence, please
+set bell-style none
+
+# expand tilde when word completing
+set expand-tilde on
+
+# 8 bit chars
+set input-meta on #accept them
+set output-meta on #show them
+set convert-meta on #display them as char, not octal
+
+# quote a word (emacs only?)
+"\C-xq": "\eb\"\f\""
+
+# To pick up the latest recommended .inputrc content,
+# look in /etc/defaults/etc/skel/.inputrc
+
+# Modifying /etc/skel/.inputrc directly will prevent
+# setup from updating it.
+
+# The copy in your home directory (~/.inputrc) is yours, please
+# feel free to customise it to create a shell
+# environment to your liking.  If you feel a change
+# would be benifitial to all, please feel free to send
+# a patch to the cygwin mailing list.
+
+# the following line is actually
+# equivalent to "\C-?": delete-char
+"\e[3~": delete-char
+
+# VT
+"\e[1~": beginning-of-line
+"\e[4~": end-of-line
+
+# kvt
+"\e[H": beginning-of-line
+"\e[F": end-of-line
+
+# rxvt and konsole (i.e. the KDE-app...)
+"\e[7~": beginning-of-line
+"\e[8~": end-of-line
+
+# VT220
+"\eOH": beginning-of-line
+"\eOF": end-of-line
+
