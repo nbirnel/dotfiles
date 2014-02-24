@@ -503,7 +503,7 @@ authme() {
       ssh "$@" 'cat - >>"$HOME/.ssh/authorized_keys"'
 }
 
-githubfetch() {
+githubclone() {
     for i in "$@"; do
         git clone git@github.com:nbirnel/"$i".git
     done
