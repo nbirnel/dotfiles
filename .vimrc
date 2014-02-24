@@ -107,6 +107,8 @@ set expandtab                    " no real tabs please!
 "" WINDOWS
                                  " \w vertical split and jump to the right 
 nnoremap <leader>w <C-w>v<C-w>l
+set splitbelow                   " new windows below 
+set splitright                   " new vertical windows to the right
 
 "" MS WINDOWS
 if has("gui_win32")
