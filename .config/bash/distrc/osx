@@ -13,12 +13,10 @@ alias vo='vim -O'
 alias ffprof='/Applications/Firefox.app//Contents/MacOS/firefox --ProfileManager'
 
 myip() {
-    :~/.config/bash/distrc/osx
     ifconfig | sed -n '/^en0/,/^[a-z]/s/.*inet \([0-9.]*\).*/\1/p'
 }
 
 ff() {
-    :~/.config/bash/distrc/osx
     /Applications/Firefox.app/Contents/MacOS/firefox "$@"
 }
 

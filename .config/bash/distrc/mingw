@@ -4,14 +4,12 @@ fi
 export USER
 
 phone() {
-    :~/.config/bash/distrc/mingw
     grep -i -- "$@" ~/teris-phone.csv
 }
 
 umask 0022
 
 myip() {
-    :~/.config/bash/distrc/mingw
     ipconfig | sed -n 's/^\s*IPv4 Address[. ]*: *//p'
 }
 

@@ -11,7 +11,6 @@ alias d2u='dos2unix --d2u'
 export TERMINAL_MULTIPLEXER=tmux
 
 myip() {
-    :~/.config/bash/osrc/linux
     sudo ifconfig | sed -n '/^eth/,/^lo/s/\s*inet addr:\s*\([0-9.]*\).*/\1/p'
 }
 

@@ -8,14 +8,12 @@ alias unusb='sync && sudo /sbin/umount /mnt/usb'
 alias paci='sudo pkg_add -r'
 
 pacl() {
-    :~/.config/bash/distrc/freebsd
     _pkgdir=/var/db/pkg
     pkg_info -L $(ls -d "$_pkgdir/$1-"*)
     unset _pkgdir
 }
 
 pacr() {
-    :~/.config/bash/distrc/freebsd
     pkgdir=/var/db/pkg
     sudo pkg_delete -i $(ls -d "$pkgdir/$1-"*)
     unset _pkgdir
