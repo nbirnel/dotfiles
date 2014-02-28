@@ -50,6 +50,7 @@ set matchtime=5                  " how many tenths of a second to blink
 
 set colorcolumn=80               " visual notice when my lines are too long
 set nowrap                       " one line per line
+set linebreak                    " but if we do wrap, respect words
 set showbreak=↳\                 " shown at the start of a wrapped line
 
 syntax on                        " syntax highlighting on
