@@ -15,6 +15,7 @@ alias 7zc='/cygdrive/c/Program\ Files/7-Zip/7z.exe a -t7z -m0=lzma -mx=9 -mfb=64
 alias 7zx='/cygdrive/c/Program\ Files/7-Zip/7z.exe x'
 
 we() {
+    :~/.config/bash/distrc/cygwin
     if [ -z "$1" ]; then
         dir="$(cygpath -w ..)"
     else
@@ -25,32 +26,39 @@ we() {
 }
 
 man2txt() {
+    :~/.config/bash/distrc/cygwin
     man $1 | col -b | u2d > $1.txt
 }
 
 npman() {
+    :~/.config/bash/distrc/cygwin
     man2txt $1 && notepad $1.txt
 }
 
 nppman() {
+    :~/.config/bash/distrc/cygwin
     man2txt $1 && notepad /p $1.txt
 }
 
 xo() {
+    :~/.config/bash/distrc/cygwin
     cat /dev/clipboard
 }
 
 cdc() {
+    :~/.config/bash/distrc/cygwin
     cd "$(cygpath "$(sed 's,/$,,'  /dev/clipboard)")"
 }
 
 cj() {
+    :~/.config/bash/distrc/cygwin
     cd "$(cygpath -w "$@")"
 }
 
 alias pacl='cygcheck -l'
 alias pacs='cygcheck -p'
 paco() {
+    :~/.config/bash/distrc/cygwin
     if [ -f "$1" ]; then
         cygcheck -f "$1"
     else
@@ -63,6 +71,7 @@ paco() {
 alias nppr='pr -3 -t -l 65'
 
 mkdest() {
+    :~/.config/bash/distrc/cygwin
     if [ $# -gt 0 ]; then
         mkdir -p "$@" && cd "$@" || return 1
     fi
@@ -74,6 +83,7 @@ mkdest() {
 }
 
 robo() {
+    :~/.config/bash/distrc/cygwin
     robocopy . "$dest"  /e /dcopy:t /copy:dat /r:5 /w:5 /v /x /ts /fp /tee /log+:"$dest-robocopy.log"
     (cd "$(cygpath "$dest")"/.. && \
     mv "$log" "tmp-$log" && \
@@ -82,6 +92,7 @@ robo() {
 }
 
 open() {
+    :~/.config/bash/distrc/cygwin
     #let's be like OS X
     for i in "$@"; do
         cygstart "$i"
@@ -93,16 +104,19 @@ open() {
 umask 0000
 
 locof() {
+    :~/.config/bash/distrc/cygwin
     # default to pwd
     [ "$#" -eq 0 ] && set "."
     cygpath -w "$(readlink -f "$@")"
 }
 
 tc() {
+    :~/.config/bash/distrc/cygwin
     locof "$@" >/dev/clipboard
 }
 
 myip() {
+    :~/.config/bash/distrc/cygwin
     ipconfig | sed -n 's/^\s*IPv4 Address[. ]*: *//p'
 }
 

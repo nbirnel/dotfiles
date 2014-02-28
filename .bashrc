@@ -46,6 +46,7 @@ else
 fi
 
 _prompt_command() {
+    :~/.bashrc
     if test $? = 0; then
         _error="$_green"
     else
@@ -195,42 +196,49 @@ alias vimrcl='vim "+set ft=sh" "$_LOCALRC"'
 # cd aliases
 
 ..() { 
+    :~/.bashrc
     if [ -n "$1" ]; then cd ../"$1";  # one move so "cd -" still good
     else cd ..;
     fi
 }
 
 ...() { 
+    :~/.bashrc
     if [ -n "$1" ]; then cd ../../"$1";
     else cd ../..;
     fi
 }
 
 ....() { 
+    :~/.bashrc
     if [ -n "$1" ]; then cd ../../../"$1";
     else cd ../../..;
     fi
 }
 
 .....() { 
+    :~/.bashrc
     if [ -n "$1" ]; then cd ../../../../"$1";
     else cd ../../../..;
     fi
 }
 
 ......() { 
+    :~/.bashrc
     if [ -n "$1" ]; then cd ../../../../../"$1";
     else cd ../../../../..;
     fi
 }
 
 .......() { 
+    :~/.bashrc
     if [ -n "$1" ]; then cd ../../../../../../"$1";
     else cd ../../../../../..;
     fi
 }
 
 ........() { 
+    :~/.bashrc
     if [ -n "$1" ]; then cd ../../../../../../../"$1";
     else cd ../../../../../../..;
     fi
@@ -263,37 +271,39 @@ alias info="info --vi-keys"
 alias cdrip='sudo cdrip'
 
 c( ) {
-   # eg c .h.n = cd /home/noah/.
-   # not sure where I stole this from, but the original could
-   # only do absolute paths, take single letter abbreviations
-   # with no wildcards, and the regex stunk.
-   # 2011 12 02 added support for spaces, made portable to non-GNU
-   # sed.
-   dir="$@"
-
-   # Append * to non-dot sequences, change spaces to *, translate dots to / 
-   # and add
-   # final "/." to be sure this only matches a directory:
-   dirpat="$(echo $dir | sed 's#\([^.][^.]*\)#\1*#g; s/  */*/g' | tr . /)/."
-
-   # In case $dirpat is empty, set dummy "x" then shift it away:
-   set x $dirpat; shift
-
-   # Do the cd if we got one match, else print error:
-   if [ "$1" = "$dirpat" ]; then
-      # pattern didn't match (shell didn't expand it)
-      echo "c: no match for $dirpat" 1>&2
-   elif [ $# = 1 ]; then
-      cd "$1"
-   else
-      echo "c: too many matches for $dir:" 1>&2
-      ls -d "$@"
-   fi
-
-   unset dir dirpat
+    :~/.bashrc
+    # eg c .h.n = cd /home/noah/.
+    # not sure where I stole this from, but the original could
+    # only do absolute paths, take single letter abbreviations
+    # with no wildcards, and the regex stunk.
+    # 2011 12 02 added support for spaces, made portable to non-GNU
+    # sed.
+    dir="$@"
+ 
+    # Append * to non-dot sequences, change spaces to *, translate dots to / 
+    # and add
+    # final "/." to be sure this only matches a directory:
+    dirpat="$(echo $dir | sed 's#\([^.][^.]*\)#\1*#g; s/  */*/g' | tr . /)/."
+ 
+    # In case $dirpat is empty, set dummy "x" then shift it away:
+    set x $dirpat; shift
+ 
+    # Do the cd if we got one match, else print error:
+    if [ "$1" = "$dirpat" ]; then
+       # pattern didn't match (shell didn't expand it)
+       echo "c: no match for $dirpat" 1>&2
+    elif [ $# = 1 ]; then
+       cd "$1"
+    else
+       echo "c: too many matches for $dir:" 1>&2
+       ls -d "$@"
+    fi
+ 
+    unset dir dirpat
 }
 
 cm() {
+    :~/.bashrc
     if [ -n "$dest" ]; then
         _tmp_dest="$dest"
         _reset_dest=1
@@ -318,32 +328,39 @@ cm() {
 }
 
 shc() {
+    :~/.bashrc
     echo "scale=9;$@" | bc
 }
 
 
 #FIXME make dmenu or pick (from UPE) depending on [ -z "$DISPLAY" ]
 r() {
+    :~/.bashrc
     history | tail | sed 's/[-0-9: ]*//' | uniq | dmenu -l 10
 }
 
 h() {
+    :~/.bashrc
     history | sed 's/[-0-9: ]*//' | sort -u | dmenu -l 30
 }
 
 rx() {
+    :~/.bashrc
     $(r)
 }
 
 hx() {
+    :~/.bashrc
     $(h)
 }
 
 mkcd() {
+    :~/.bashrc
     mkdir -p "$1" && cd "$1"
 }
 
 _follow_funs_helper() {
+    :~/.bashrc
     #FIXME this needs to return a correct exit status
     #FIXME fails weirdly on carrybk spec-dirs-3rd-pass if no $OLDPWD
     action=$1
@@ -389,31 +406,38 @@ _follow_funs_helper() {
 }
 
 follow() {
+    :~/.bashrc
     _follow_funs_helper cp last "$@"
 }
 
 carry() {
+    :~/.bashrc
     _follow_funs_helper mv last "$@"
 }
 
 followbk() {
+    :~/.bashrc
     _follow_funs_helper cp back "$@"
 }
 
 carrybk() {
+    :~/.bashrc
     _follow_funs_helper mv back "$@"
 }
 
 cpbk() {
+    :~/.bashrc
     cp "$@" "$OLDPWD"
 }
 
 mvbk() {
+    :~/.bashrc
     mv "$@" "$OLDPWD"
 }
 
 #FIXME mksh won't have this
 savehist() {
+    :~/.bashrc
     HISTFILE="$HOME/.config/bash_history/$@"
     export HISTFILE
 }
@@ -421,6 +445,7 @@ savehist() {
 #alias pgen='pwgen -n -c -y 8 1' #one number, one upper, one non-alnum
 #alias pgens='pwgen -n -c -y -s 8 1' #one number, one upper, one non-alnum, 'secure'
 spgen() {
+    :~/.bashrc
     if [ $# = 1 ]; then
         len=$1
         num=1
@@ -436,6 +461,7 @@ spgen() {
 }
 
 pgen() {
+    :~/.bashrc
     if [ $# = 1 ]; then
         len=$1
         num=1
@@ -451,10 +477,12 @@ pgen() {
 }
 
 filect() {
+    :~/.bashrc
     find "$@" -type f | sort -u | wc -l
 }
 
 gitp() {
+    :~/.bashrc
     while [ $# -gt 0 ]; do
         case "$1" in
           -ls)
@@ -499,11 +527,13 @@ gitp() {
 }
 
 authme() {
+    :~/.bashrc
     cat "$HOME"/.ssh/id_*sa.pub |\
       ssh "$@" 'cat - >>"$HOME/.ssh/authorized_keys"'
 }
 
 githubclone() {
+    :~/.bashrc
     for i in "$@"; do
         git clone git@github.com:nbirnel/"$i".git
     done
@@ -513,6 +543,7 @@ export X_TERMINAL_EMULATOR=uxterm
 export TERM=xterm-256color
 
 term() {
+    :~/.bashrc
     if [ -n "$TMUX" ]; then
         tmux split-window -h
     elif [ -n "$WINDOW" ]; then
@@ -533,7 +564,5 @@ term() {
 # reset this last so we don't get a bunch of bashrc in our history
 export PATH
 set -o history
-
-
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
