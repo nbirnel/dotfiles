@@ -14,9 +14,6 @@ defflow off	# leave this off, so we can save in *emacs
 deflogin on
 #autodetach off
 
-vbell on
-vbell_msg "   Wuff  ----  Wuff!!  "
-
 # all termcap entries are now duplicated as terminfo entries.
 # only difference should be the slightly modified syntax, and check for
 # terminfo entries, that are already corected in the database.
@@ -119,4 +116,7 @@ caption always "%{= kw}%?%-Lw%?%{Kw}%n*%f %t%?(%u)%?%{kw}%?%+Lw%? %=%{= dw} %H "
 
 #make my prefix like my tmux prefix C-\
 escape ^\\
+
+#stop flashing at me
+vbell off
 
