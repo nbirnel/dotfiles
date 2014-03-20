@@ -242,6 +242,7 @@ alias chx='chmod +x'
 alias psgr='ps -e | grep'
 
 alias vo='vim -O'
+alias vx="xo | vim -c ':set nomodified' -"
 
 alias glinks='links -g'
 alias u2l='tr [:upper:] [:lower:]'
