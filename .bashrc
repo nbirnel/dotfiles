@@ -510,7 +510,9 @@ githubclone() {
     done
 }
 
-export X_TERMINAL_EMULATOR=uxterm
+st=$(which st)
+export X_TERMINAL_EMULATOR=${st:-uxterm}
+unset st
 export TERM=xterm-256color
 
 term() {
@@ -520,7 +522,7 @@ term() {
         #screen -p $WINDOW -X split
         screen 
     elif [ -n "$DISPLAY" ]; then
-        $X_TERMINAL_EMULATOR &
+        $X_TERMINAL_EMULATOR -e /bin/bash --login &
     elif [ -n "$NO_X_TERMINAL_EMULATOR" ]; then
         $NO_X_TERMINAL_EMULATOR &
     elif [ -n "$TERMINAL_MULTIPLEXER" ]; then
