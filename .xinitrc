@@ -83,7 +83,7 @@ eval $(ssh-agent)
 
 test $(which xsetroot) && xsetroot -solid midnightblue &
 if [ $(which xbanish) ]; then
-    xbanish &    # https://github.com/jcs/xbanish
+    xbanish >>$HOME/.xbanish.log &    # https://github.com/jcs/xbanish
 elif [ $(which unclutter) ]; then
     unclutter &
 fi
