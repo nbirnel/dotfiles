@@ -510,7 +510,7 @@ githubclone() {
     done
 }
 
-st=$(which st)
+st=$(which st 2>/dev/null)
 export X_TERMINAL_EMULATOR=${st:-uxterm}
 unset st
 export TERM=xterm-256color
