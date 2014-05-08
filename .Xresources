@@ -72,7 +72,6 @@
 UXTerm*scrollBar: false
 UXTerm*toolBar: false
 
-*XTerm*loginShell:true
 XTerm*toolBar: false
 *XTerm*toolBar: false
 *XTerm*scrollBar: false
