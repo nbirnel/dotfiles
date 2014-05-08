@@ -1,9 +1,4 @@
 alias ll='ls -l -h'
 alias la='ls -A'
 
-# enable color support of ls
-if [ "$TERM" != "dumb" ]; then
-    alias ls='ls -G'
-fi
-
 # vim:ft=sh
