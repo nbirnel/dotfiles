@@ -161,6 +161,9 @@ case "$(uname)" in
     ARCH)
         _DISTRC="$_BASH_DIST_CONFIGDIR/archlinux"
         ;;
+    OpenBSD)
+        _DISTRC="$_BASH_DIST_CONFIGDIR/openbsd"
+        ;;
     FreeBSD)
         _DISTRC="$_BASH_DIST_CONFIGDIR/freebsd"
         ;;
