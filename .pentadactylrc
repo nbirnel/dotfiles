@@ -1,9 +1,17 @@
 " vim: set ft=pentadactyl:
 
+"basic startup
 set runtimepath="~/.pentadactyl"
 
 loadplugins '\.(js|penta)$'
 group user
+
+"go home
+cd ~
+
+
+
+"gui
 
 "no dumb gui stuff, but number tabs if and when we show them
 set guioptions='n'
@@ -11,20 +19,33 @@ set guioptions='n'
 "yes dumb tabs
 set showtabline=always
 
+
+
+"tab stuff
+
 "don't jump to new tab on P, but do on gP
 set activate-=paste
 
 "don't jump to new tab on tabopen
 set activate-=tabopen
 
-"go home
-cd ~
+"new tabs opened for anything
+set newtab=all
+
+"swap D and d - so we normally will select tab to left after deleting
+map -count -builtin D d
+map -count -builtin d D
+
+
+
+"highlighting
 
 "highlight searches. Use :set nohlfind to turn off
 set hlfind
 
-"new tabs opened for anything
-set newtab=all
+
+
+"website-specific passthroughs, etc
 
 "gross work-around to keep gmail keybindings working
 set strictfocus='chrome:*':laissez-faire,*:laissez-faire
@@ -32,7 +53,3 @@ set passkeys+=mail.google.com:'!#*+-./<C-Down><C-s><Enter>?INU[]acefjk lmnopqrsu
 
 "pass through for GoDaddy email
 autocmd LocationChange secureserver.net :normal! <C-z>
-
-"swap D and d - so we normally will select tab to left after deleting
-map -count -builtin D d
-map -count -builtin d D
