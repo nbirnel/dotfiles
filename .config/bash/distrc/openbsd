@@ -1,8 +1,3 @@
-# enable color support of ls
-if [ "$TERM" != "dumb" ]; then
-    alias ls='ls -G'
-fi
-
 alias shutdownn='sudo shutdown -p now'
 alias shutdownr='sudo shutdown -r now'
 
@@ -33,4 +28,5 @@ export TERMINAL_MULTIPLEXER=tmux
 
 _OSRC="$_BASH_OS_CONFIGDIR/bsd"
 # vim:ft=sh
+
 
