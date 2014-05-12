@@ -32,3 +32,7 @@ set passkeys+=mail.google.com:'!#*+-./<C-Down><C-s><Enter>?INU[]acefjk lmnopqrsu
 
 "pass through for GoDaddy email
 autocmd LocationChange secureserver.net :normal! <C-z>
+
+"swap D and d - so we normally will select tab to left after deleting
+map -count -builtin D d
+map -count -builtin d D
