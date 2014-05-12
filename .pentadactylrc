@@ -32,10 +32,6 @@ set activate-=tabopen
 "new tabs opened for anything
 set newtab=all
 
-"swap D and d - so we normally will select tab to left after deleting
-map -count -builtin D d
-map -count -builtin d D
-
 
 
 "highlighting
