@@ -112,6 +112,7 @@ elif [ -d /usr/local/plan9 ]; then
     PLAN9=/usr/local/plan9 && export PLAN9
 fi
 test -n $PLAN9 && PATH=$PATH:$PLAN9/bin
+test -d $HOME/.cabal/bin && PATH=$PATH:$HOME/.cabal/bin
 
 
 #FIXME mksh type is an alias for whence - use which?
