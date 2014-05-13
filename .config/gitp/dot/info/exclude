@@ -37,6 +37,11 @@
 /.cream/views/
 
 !/.dir_colors
+
+!/.elinks/
+/.elinks/*
+!/.elinks/elinks.config
+
 !/.emacs
 
 !/.emacs.d/
