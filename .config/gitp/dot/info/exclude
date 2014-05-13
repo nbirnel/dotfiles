@@ -40,7 +40,7 @@
 
 !/.elinks/
 /.elinks/*
-!/.elinks/elinks.config
+!/.elinks/elinks.conf
 
 !/.emacs
 
