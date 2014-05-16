@@ -536,6 +536,37 @@ term() {
     fi
 }
 
+# allow tmux to use existing ssh-agent
+tmuxa() {
+    # not in tmux
+    if [ -z "$TMUX" ]; then
+
+        # logged in in via ssh
+        if [ -n "$SSH_TTY" ]; then
+
+            # missing ssh authorization
+            if [ -z "$SSH_AUTH_SOCK" ]; then
+                export SSH_AUTH_SOCK="$HOME/.ssh/.auth_socket"
+            fi
+
+            # create new auth session
+            if [ ! -S "$SSH_AUTH_SOCK" ]; then
+                `ssh-agent -a $SSH_AUTH_SOCK` >/dev/null 2>&1
+                echo $SSH_AGENT_PID >/"$HOME/.ssh/.auth_pid"
+            fi
+
+            # recreate agent if not defined
+            if [ -z $SSH_AGENT_PID ]; then
+                export SSH_AGENT_PID=`cat $HOME/.ssh/.auth_pid`
+            fi
+
+            ssh-add 
+
+            tmux attach
+        fi
+    fi
+}
+
 #FIXME mksh won't use this?
 # reset this last so we don't get a bunch of bashrc in our history
 export PATH
