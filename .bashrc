@@ -423,23 +423,6 @@ savehist() {
     export HISTFILE
 }
 
-#alias pgen='pwgen -n -c -y 8 1' #one number, one upper, one non-alnum
-#alias pgens='pwgen -n -c -y -s 8 1' #one number, one upper, one non-alnum, 'secure'
-spgen() {
-    if [ $# = 1 ]; then
-        len=$1
-        num=1
-    elif [ $# = 2 ]; then
-        len=$1
-        num=$2
-    else
-        len=8
-        num=1
-    fi
-    #one number, one upper, one non-alnum, one per line, secure
-    pwgen -n -c -y -1 -s $len $num 
-}
-
 pgen() {
     if [ $# = 1 ]; then
         len=$1
@@ -448,11 +431,11 @@ pgen() {
         len=$1
         num=$2
     else
-        len=8
+        len=64
         num=1
     fi
-    #one number, one upper, one non-alnum, one per linee
-    pwgen -n -c -y -1 $len $num
+    #one number, one upper, one non-alnum, one per line, secure
+    pwgen -n -c -y -1 -s $len $num 
 }
 
 filect() {
