@@ -10,7 +10,7 @@ group user
 cd ~
 
 "start c-i / gF editor vim in insert mode
-set editor='gvim -f +<line> +"silent! call cursor(0, <column>): +startinsert <file>'
+set editor='gvim -f +<line> +"silent! call cursor(0, <column>)" +startinsert <file>'
 
 "GUI
 
