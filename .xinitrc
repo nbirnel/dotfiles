@@ -15,10 +15,10 @@ test -f "$usermodmap"    && xmodmap     "$usermodmap"
 # start some nice programs
 eval $(ssh-agent)
 
-test $(which xsetroot) && xsetroot -solid midnightblue &
-test $(which st)       && st -e $(which bash) --login &
-test $(which conky)    && conky &
-
+test $(which xsetroot)  && xsetroot -solid midnightblue &
+test $(which st)        && st -e $(which bash) --login &
+test $(which conky)     && conky &
+test $(which gpg-agent) && eval $(gpg-agent --daemon)
 
 if [ $(which xbanish) ]; then
     xbanish >>$HOME/.xbanish.log &    # https://github.com/jcs/xbanish
@@ -42,3 +42,4 @@ if [ $(which dwmstatus) ]; then
 else
     uxterm -ls -T Failsafe -geometry 80x24-0-0
 fi
+
