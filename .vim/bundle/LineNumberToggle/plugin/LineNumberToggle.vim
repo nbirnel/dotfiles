@@ -7,12 +7,10 @@ if g:LineNumberToggle_map_keys
 endif
 
 function! <SID>LineNumberToggle()
-    if &relativenumber 
-        set number
-    elseif &number
+    if &number 
         set nonumber
     else
-        set relativenumber
+        set number
     endif
 endfunction
 
