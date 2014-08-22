@@ -55,6 +55,10 @@ set showbreak=↳\                 " shown at the start of a wrapped line
 
 syntax on                        " syntax highlighting on
 colorscheme darkblue             " default - to be reset in machinefile
+if &diff                         
+    colorscheme badwolf          " darkblue is blinding in diff mode
+endif
+
 
 set lazyredraw                   " don't show magic whilst executing macros.
 
