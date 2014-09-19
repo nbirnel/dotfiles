@@ -64,6 +64,8 @@
 !/.vim/
 /.vim/backup/*
 !/.vim/backup/_folder_
+/.vim/bundle/*
+!/.vim/bundle/.gitkeep
 /.vim/doc/tags
 /.vim/tmp/*
 !/.vim/tmp/_folder_
