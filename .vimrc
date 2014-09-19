@@ -25,6 +25,8 @@ set fileencodings=ucs-bom,utf-8,iso-8859-1
                                  " :Helptags
 call pathogen#infect() 
 
+runtime macros/matchit.vim
+
                                  " \ev edit vimrc 
 nnoremap <silent> <leader>ev :edit $MYVIMRC<cr>
                                  " \sv source vimrc
@@ -44,7 +46,7 @@ set scrolloff=1                  " keep a few lines of context when scrolling
 
 set number                       " duh
 set relativenumber               " show line numbers relative to .
-set cursorline                   " and hightlight the current line
+set cursorline                   " and highlight the current line
 
 set showmatch                    "flash matching braces
 set matchtime=5                  " how many tenths of a second to blink 
