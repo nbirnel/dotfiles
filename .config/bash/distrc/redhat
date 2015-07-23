@@ -1,0 +1,3 @@
+_OSRC="$_BASH_OS_CONFIGDIR/linux"
+# vim:ft=sh
+
