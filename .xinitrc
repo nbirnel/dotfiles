@@ -19,6 +19,7 @@ test $(which xsetroot)  && xsetroot -solid midnightblue &
 test $(which st)        && st -e $(which bash) --login &
 test $(which conky)     && conky &
 test $(which gpg-agent) && eval $(gpg-agent --daemon)
+test $(which numlockx)  && numlockx on
 
 if [ $(which xbanish) ]; then
     xbanish >>$HOME/.xbanish.log &    # https://github.com/jcs/xbanish
