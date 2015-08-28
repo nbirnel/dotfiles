@@ -100,9 +100,10 @@ if [ -f /usr/share/bash-completion/bash_completion ]; then
     . /usr/share/bash-completion/bash_completion
 fi
 
-for i in $(ls /etc/bash_completion.d/); do
-    . /etc/bash_completion.d/$i
-done
+# Needed this on Cent 7, but it breaks Ubuntu 14. 
+#for i in $(ls /etc/bash_completion.d/); do
+#    . /etc/bash_completion.d/$i
+#done
 
 #environmental variables
 
@@ -562,7 +563,5 @@ tmuxa() {
 # reset this last so we don't get a bunch of bashrc in our history
 export PATH
 set -o history
-
-
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
