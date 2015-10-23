@@ -44,3 +44,6 @@ set passkeys+=mail.google.com:'!#*+-./<C-Down><C-s><Enter>?INU[]acefjk lmnopqrsu
 
 "pass through for GoDaddy email
 autocmd LocationChange secureserver.net :normal! <C-z>
+
+map gr -js let r = document.getElementById('reader-mode-button'); if (!r.hidden) r.click()
+
