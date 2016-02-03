@@ -15,7 +15,7 @@ set editor='gvim -f +<line> +"silent! call cursor(0, <column>)" +startinsert <fi
 "GUI
 
 "number tabs if and when we show them, and have right scrollbar
-set guioptions='nr'
+set guioptions='nrs'
 
 "yes dumb tabs
 set showtabline=always
