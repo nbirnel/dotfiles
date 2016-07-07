@@ -8,7 +8,5 @@ alias pacl='dpkg -L'
 alias paco='dpkg -S'
 alias pacs='apt-cache search'
 
-alias go='gnome-open'
-
 _OSRC="$_BASH_OS_CONFIGDIR/linux"
 # vim:ft=sh
