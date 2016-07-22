@@ -47,6 +47,7 @@ set scrolloff=1                  " keep a few lines of context when scrolling
 set number                       " duh
 set relativenumber               " show line numbers relative to .
 set cursorline                   " and highlight the current line
+hi CursorLine term=bold cterm=bold guibg=Grey40
 
 set showmatch                    "flash matching braces
 set matchtime=5                  " how many tenths of a second to blink 
