@@ -29,14 +29,14 @@ export LC_ALL=en_US.UTF-8
 DIRCS=$HOME/.dir_colors
 
 _off='\[\e[0m\]'
-_black='\[\e[30m\]'
-_red='\[\e[31m\]'
-_green='\[\e[32m\]'
-_yellow='\[\e[33m\]'
-_blue='\[\e[34m\]'
-_magenta='\[\e[35m\]'
-_cyan='\[\e[36m\]'
-_white='\[\e[37m\]'
+_black='\[\e[30;1m\]'
+_red='\[\e[31;1m\]'
+_green='\[\e[32;1m\]'
+_yellow='\[\e[33;1m\]'
+_blue='\[\e[34;1m\]'
+_magenta='\[\e[35;1m\]'
+_cyan='\[\e[36;1m\]'
+_white='\[\e[37;1m\]'
 _contrast="$_white"
 
 if test -n "$SSH_CONNECTION"; then
