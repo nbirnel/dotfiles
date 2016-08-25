@@ -44,6 +44,7 @@ _Red3='\[\e[38;5;160;1m\]'
 _DeepPink1='\[\e[38;5;198;1m\]'
 _DarkOrange='\[\e[38;5;208;1m\]'
 _SandyBrown='\[\e[38;5;215;1m\]'
+_MistyRose='\[\e[38;5;224;1m\]'
 
 if test -n "$SSH_CONNECTION"; then
     _ssh="$_yellow($(echo $SSH_CONNECTION | awk '{ printf("%s->%s", $1, $3) }')) "
@@ -78,7 +79,7 @@ _prompt_command() {
 
     _time="$(date '+%H:%M %a %b %d')"
    #                                        user host        where        
-    PS1="$_ps_pref$_ssh$_magenta$_time $_blue\u@\h $_contrast\w$_git$(__git_ps1)$_error\$\n$_off"
+    PS1="$_ps_pref$_ssh$_magenta$_time $_blue\u@\h $_MistyRose\w$_git$(__git_ps1) $_error\$\n$_off"
 }
     
 #FIXME mksh has no PS1
