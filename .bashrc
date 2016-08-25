@@ -51,6 +51,8 @@ else
     _ssh=""
 fi
 
+export GIT_PS1_SHOWDIRTYSTATE=1
+
 _prompt_command() {
     if test $? = 0; then
         _error="$_green"
@@ -58,11 +60,14 @@ _prompt_command() {
         _error="$_red"
     fi
 
-    _s="$(git status)"
-    printf "$_s" | grep '^Changes not staged for commit:$' >/dev/null 2>&1 &&\
-      _git="$_Red3"
-    printf "$_s" | grep '^Changes to be committed:$' >/dev/null 2>&1 &&\
-      _git="$_DarkOrange"
+    _s="$(git status 2>/dev/null)"
+    if printf "$_s" | grep '^Changes not staged for commit:$' >/dev/null 2>&1
+        then _git="$_Red3"
+    elif printf "$_s" | grep '^Changes to be committed:$' >/dev/null 2>&1 
+        then _git="$_DarkOrange"
+    else
+        _git="$_Chartreuse2"
+    fi
 
     #FIXME mksh probably doesn't have this
     # append history after each command
@@ -72,8 +77,8 @@ _prompt_command() {
     echo -ne '\e]0;'"$_title"'\a'
 
     _time="$(date '+%H:%M %a %b %d')"
-   #                             user host   where        
-    PS1="$_ps_pref$_ssh$_magenta$_time $_blue\u@\h $_contrast\w $_error\$\n$_off"
+   #                                        user host        where        
+    PS1="$_ps_pref$_ssh$_magenta$_time $_blue\u@\h $_contrast\w$_git$(__git_ps1)$_error\$\n$_off"
 }
     
 #FIXME mksh has no PS1
