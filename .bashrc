@@ -32,15 +32,15 @@ _off='\[\e[0m\]'
 _black='\[\e[30m\]'
 _red='\[\e[31m\]'
 _green='\[\e[32m\]'
-_orange='\[\e[33m\]'
+_yellow='\[\e[33m\]'
 _blue='\[\e[34m\]'
-_maroon='\[\e[35m\]'
+_magenta='\[\e[35m\]'
 _cyan='\[\e[36m\]'
 _white='\[\e[37m\]'
 _contrast="$_white"
 
 if test -n "$SSH_CONNECTION"; then
-    _ssh="$_orange($(echo $SSH_CONNECTION | awk '{ printf("%s->%s", $1, $3) }')) "
+    _ssh="$_yellow($(echo $SSH_CONNECTION | awk '{ printf("%s->%s", $1, $3) }')) "
 else
     _ssh=""
 fi
@@ -61,26 +61,26 @@ _prompt_command() {
 
     _time="$(date '+%H:%M %a %b %d')"
    #                             user host   where        
-    PS1="$_ps_pref$_ssh$_maroon$_time $_blue\u@\h $_contrast\w $_error\$\n$_off"
+    PS1="$_ps_pref$_ssh$_magenta$_time $_blue\u@\h $_contrast\w $_error\$\n$_off"
 }
     
 #FIXME mksh has no PS1
 #FIXME make colors vars :
-# _maroon='\[\e[35m\]'
+# _magenta='\[\e[35m\]'
 # _time='\@'
 #case $TERM in 
 #	cons* )
-#        MAROON  time date BLUE  user host  RED  directory    prompt  WHITE
+#        magenta  time date BLUE  user host  RED  directory    prompt  WHITE
 #	PS1="\[\e[35m\]\@ \d \[\e[34m\]\u@\h \[\e[31m\]\w\[\e[31m\]\n\$\[\e[37m\]"
 #	;;
 #	cygwin* )
-#        MAROON  time date BLUE  user host  RED  directory    prompt  WHITE
+#        magenta  time date BLUE  user host  RED  directory    prompt  WHITE
 #	PS1="\[\e[35m\]\@ \d \[\e[34m\]\u@\h \[\e[31m\]\w\[\e[31m\]\n\$\[\e[37m\]"
 #	;;
 #	* )
-#        MAROON  time date BLUE  user host  RED  directory    prompt  WHITE
+#        magenta  time date BLUE  user host  RED  directory    prompt  WHITE
 #	PS1="\[\e[35m\]\@ \d \[\e[34m\]\u@\h \[\e[31m\]\w\[\e[31m\]\n\$\[\e[37m\]"
-#        MAROON  time date BLUE  user host  RED  directory    prompt  BLACK
+#        magenta  time date BLUE  user host  RED  directory    prompt  BLACK
 #	PS1="\[\e[35m\]\@ \d \[\e[34m\]\u@\h \[\e[31m\]\w\[\e[31m\]\n\$\[\e[30m\]"
 #	;;
 #esac
