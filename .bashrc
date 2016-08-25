@@ -39,6 +39,12 @@ _cyan='\[\e[36;1m\]'
 _white='\[\e[37;1m\]'
 _contrast="$_white"
 
+_Chartreuse2='\[\e[38;5;112;1m\]'
+_Red3='\[\e[38;5;160;1m\]'
+_DeepPink1='\[\e[38;5;198;1m\]'
+_DarkOrange='\[\e[38;5;208;1m\]'
+_SandyBrown='\[\e[38;5;215;1m\]'
+
 if test -n "$SSH_CONNECTION"; then
     _ssh="$_yellow($(echo $SSH_CONNECTION | awk '{ printf("%s->%s", $1, $3) }')) "
 else
@@ -51,6 +57,12 @@ _prompt_command() {
     else
         _error="$_red"
     fi
+
+    _s="$(git status)"
+    printf "$_s" | grep '^Changes not staged for commit:$' >/dev/null 2>&1 &&\
+      _git="$_Red3"
+    printf "$_s" | grep '^Changes to be committed:$' >/dev/null 2>&1 &&\
+      _git="$_DarkOrange"
 
     #FIXME mksh probably doesn't have this
     # append history after each command
