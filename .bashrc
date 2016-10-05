@@ -72,6 +72,10 @@ _prompt_command() {
         _git="$_Chartreuse2" && _untracked=''
     fi
 
+    if printf "$_s" | grep '^Untracked files:$' >/dev/null 2>&1
+        then _untracked="${_DarkOrange}+"
+    fi
+
     #FIXME mksh probably doesn't have this
     # append history after each command
     history -a
