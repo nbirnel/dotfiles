@@ -63,11 +63,13 @@ _prompt_command() {
 
     _s="$(git status 2>/dev/null)"
     if printf "$_s" | grep '^Changes not staged for commit:$' >/dev/null 2>&1
-        then _git="$_Red3"
+        then _git="$_Red3" && _untracked=''
     elif printf "$_s" | grep '^Changes to be committed:$' >/dev/null 2>&1 
-        then _git="$_DarkOrange"
+        then _git="$_DarkOrange" && _untracked=''
+    elif printf "$_s" | grep '^nothing added to commit but untracked files present' >/dev/null 2>&1 
+        then _git="$_Chartreuse2" && _untracked="${_DarkOrange}+"
     else
-        _git="$_Chartreuse2"
+        _git="$_Chartreuse2" && _untracked=''
     fi
 
     #FIXME mksh probably doesn't have this
@@ -79,7 +81,7 @@ _prompt_command() {
 
     _time="$(date '+%H:%M %a %b %d')"
    #                                        user host        where        
-    PS1="$_ps_pref$_ssh$_magenta$_time $_blue\u@\h $_MistyRose\w$_git$(__git_ps1) $_error\$\n$_off"
+    PS1="$_ps_pref$_ssh$_magenta$_time $_blue\u@\h $_MistyRose\w$_git$(__git_ps1)$_untracked $_error\$\n$_off"
 }
     
 #FIXME mksh has no PS1
