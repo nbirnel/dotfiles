@@ -32,6 +32,10 @@ xinitcfg="$HOME/.config/xinit"
 test -f "$xinitcfg/u/$(uname)"       && . "$xinitcfg/u/$(uname)"
 test -f "$xinitcfg/host/$(hostname)" && . "$xinitcfg/host/$(hostname)"
 
+#enable sticky keys, and latchlock, and do not expire
+xkbset -bell -feedback sticky -twokey latchlock
+xkbset exp 64 '=sticky' '=twokey' '=latchlock'
+
 # re-starts dwm when it is killed
 while :; do
     /usr/local/bin/dwm 2>>.dwm_log
