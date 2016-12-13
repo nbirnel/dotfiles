@@ -1,2 +1,5 @@
 [include]
-    path = .gituser
+    # user.email, user.name, user.signingKey go in this file
+    path = .config/git/gitconfig
+[merge]
+	tool = vimdiff
