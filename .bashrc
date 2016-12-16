@@ -143,12 +143,6 @@ fi
 test -n $PLAN9 && PATH=$PATH:$PLAN9/bin
 test -d $HOME/.cabal/bin && PATH=$PATH:$HOME/.cabal/bin
 
-
-#FIXME mksh type is an alias for whence - use which?
-# reminders!
-type -t remind > /dev/null
-[ $? == 0 -a -e ~/.remind/master ] && remind ~/.remind/master
-
 #FIXME mksh might not have this?
 HISTTIMEFORMAT='%y-%m-%d %H:%M '
 export HISTTIMEFORMAT
@@ -226,8 +220,8 @@ alias vimrcl='vim "+set ft=sh" "$_LOCALRC"'
 # cd aliases
 
 # Because openSuse is has already aliases these.
-unalias ..
-unalias ...
+unalias .. 2>/dev/null
+unalias ... 2>/dev/null
 ..() { 
     if [ -n "$1" ]; then cd ../"$1";  # one move so "cd -" still good
     else cd ..;
