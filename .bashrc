@@ -72,10 +72,6 @@ _prompt_command() {
         _git="$_Chartreuse2" && _untracked=''
     fi
 
-    if printf "$_s" | grep '^Untracked files:$' >/dev/null 2>&1
-        then _untracked="${_DarkOrange}+"
-    fi
-
     #FIXME mksh probably doesn't have this
     # append history after each command
     history -a
@@ -184,8 +180,6 @@ SWU_INSTALL=/usr/local/swu
 PATH="$PATH:/usr/local/swu/bin:/usr/local/nosql/bin"
 export NOSQL_INSTALL SWU_INSTALL PATH TMPDIR NOSQL_CHARSET
 
-alias cdd='cd $HOME/Desktop'
-
 _BASH_CONFIGDIR="$HOME/.config/bash"
 _BASH_OS_CONFIGDIR="$_BASH_CONFIGDIR/osrc"
 _BASH_DIST_CONFIGDIR="$_BASH_CONFIGDIR/distrc"
@@ -231,6 +225,9 @@ alias vimrcl='vim "+set ft=sh" "$_LOCALRC"'
 
 # cd aliases
 
+# Because openSuse is has already aliases these.
+unalias ..
+unalias ...
 ..() { 
     if [ -n "$1" ]; then cd ../"$1";  # one move so "cd -" still good
     else cd ..;
@@ -273,32 +270,10 @@ alias vimrcl='vim "+set ft=sh" "$_LOCALRC"'
     fi
 }
 
-alias cls='clear'
-alias chx='chmod +x'
-
-alias psgr='ps -e | grep'
-
-alias vo='vim -O'
-alias vx="xo | vim -c ':set nomodified' -"
-
-alias glinks='links -g'
-alias u2l='tr [:upper:] [:lower:]'
-alias l2u='tr [:lower:] [:upper:]'
-
-alias rem='remind ~/.remind/master'
-
-alias pingt='ping -c 4 www.google.com'
-
 alias gg='surfraw google'
 alias wp='surfraw wikipedia'
 
-alias manm="man -M $HOME/man"
-alias manp="man -M $HOME/usr/share/man/posix"
 alias info="info --vi-keys"
-
-#FIXME this belongs in bsd?
-# sudo aliases
-alias cdrip='sudo cdrip'
 
 c( ) {
    # eg c .h.n = cd /home/noah/.
@@ -377,10 +352,6 @@ hx() {
     $(h)
 }
 
-mkcd() {
-    mkdir -p "$1" && cd "$1"
-}
-
 _follow_funs_helper() {
     #FIXME this needs to return a correct exit status
     #FIXME fails weirdly on carrybk spec-dirs-3rd-pass if no $OLDPWD
@@ -456,69 +427,6 @@ savehist() {
     export HISTFILE
 }
 
-pgen() {
-    if [ $# = 1 ]; then
-        len=$1
-        num=1
-    elif [ $# = 2 ]; then
-        len=$1
-        num=$2
-    else
-        len=64
-        num=1
-    fi
-    #one number, one upper, one non-alnum, one per line, secure
-    pwgen -n -c -y -1 -s $len $num 
-}
-
-filect() {
-    find "$@" -type f | sort -u | wc -l
-}
-
-gitp() {
-    while [ $# -gt 0 ]; do
-        case "$1" in
-          -ls)
-            shift 
-            ls "$HOME/.config/gitp"
-            return
-            ;;
-          --edit-config)
-            $EDITOR "$HOME/.config/gitp/$2/config"
-            return $?
-            ;;
-          --edit-exclude)
-            $EDITOR "$HOME/.config/gitp/$2/info/exclude"
-            return $?
-            ;;
-          --scp-config)
-            remote="$(gitp "$2" remote show -n "$3" |\
-                      sed -n 's/ *Fetch URL: *//p')"
-            scp "$remote/config" "$HOME/.config/gitp/$2/"
-            return $?
-            ;;
-          --scp-exclude)
-            remote="$(gitp "$2" remote show -n "$3" |\
-                      sed -n 's/ *Fetch URL: *//p')"
-            scp "$remote/info/exclude" "$HOME/.config/gitp/$2/info/"
-            return $?
-            ;;
-          -*)
-            echo "Unknown flag $1" 1>&2
-            return 1
-            ;;
-          *)
-            break
-            ;;
-        esac
-    done
-
-    #dot, doc, personal, secure, work, work-secure
-    dir="$1"
-    shift
-    ( cd ~ && git --git-dir="./.config/gitp/$dir" $@)
-}
-
 authme() {
     cat "$HOME"/.ssh/id_*sa.pub |\
       ssh "$@" 'cat - >>"$HOME/.ssh/authorized_keys"'
@@ -528,59 +436,6 @@ githubclone() {
     for i in "$@"; do
         git clone git@github.com:nbirnel/"$i".git
     done
-}
-
-st=$(which st 2>/dev/null)
-export X_TERMINAL_EMULATOR=${st:-uxterm}
-unset st
-export TERM=xterm-256color
-
-term() {
-    if [ -n "$TMUX" ]; then
-        tmux split-window -h
-    elif [ -n "$WINDOW" ]; then
-        #screen -p $WINDOW -X split
-        screen 
-    elif [ -n "$DISPLAY" ]; then
-        $X_TERMINAL_EMULATOR -e /bin/bash --login &
-    elif [ -n "$NO_X_TERMINAL_EMULATOR" ]; then
-        $NO_X_TERMINAL_EMULATOR &
-    elif [ -n "$TERMINAL_MULTIPLEXER" ]; then
-        $TERMINAL_MULTIPLEXER
-    else
-        return 1
-    fi
-}
-
-# allow tmux to use existing ssh-agent
-tmuxa() {
-    # not in tmux
-    if [ -z "$TMUX" ]; then
-
-        # logged in in via ssh
-        if [ -n "$SSH_TTY" ]; then
-
-            # missing ssh authorization
-            if [ -z "$SSH_AUTH_SOCK" ]; then
-                export SSH_AUTH_SOCK="$HOME/.ssh/.auth_socket"
-            fi
-
-            # create new auth session
-            if [ ! -S "$SSH_AUTH_SOCK" ]; then
-                `ssh-agent -a $SSH_AUTH_SOCK` >/dev/null 2>&1
-                echo $SSH_AGENT_PID >/"$HOME/.ssh/.auth_pid"
-            fi
-
-            # recreate agent if not defined
-            if [ -z $SSH_AGENT_PID ]; then
-                export SSH_AGENT_PID=`cat $HOME/.ssh/.auth_pid`
-            fi
-
-            ssh-add 
-
-            tmux attach
-        fi
-    fi
 }
 
 # git hub command
