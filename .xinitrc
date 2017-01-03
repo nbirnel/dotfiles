@@ -33,18 +33,13 @@ test -f "$xinitcfg/u/$(uname)"       && . "$xinitcfg/u/$(uname)"
 test -f "$xinitcfg/host/$(hostname)" && . "$xinitcfg/host/$(hostname)"
 
 #enable sticky keys, and latchlock, and do not expire
-xkbset -bell -feedback sticky -twokey latchlock
-xkbset exp 64 '=sticky' '=twokey' '=latchlock'
-
-# re-starts dwm when it is killed
-while :; do
-    /usr/local/bin/dwm 2>>.dwm_log
-done  &
-
-# exit X when dwmstatus (or failsafe xterm) is killed
-if [ $(which dwmstatus) ]; then
-    dwmstatus
-else
-    uxterm -ls -T Failsafe -geometry 80x24-0-0
+if [ $(which xkbset) ]; then
+    xkbset -bell -feedback sticky -twokey latchlock
+    xkbset exp 64 '=sticky' '=twokey' '=latchlock'
 fi
 
+xautolock -time 10 -locker /usr/local/bin/slock -notify 60 \
+  -notifier 'echo "60s" | dmenu -fn "xft:terminus:pixelsize=180"' &
+
+dwmstatus &
+/usr/local/bin/dwm 2>>.dwm_log
