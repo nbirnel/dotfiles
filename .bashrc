@@ -8,7 +8,7 @@ umask 0022          # everyone can use my files by default!
 
 #FIXME not bashrc - profile?
 [ -z $BASHRC_HAS_RUN ] \
-    && PATH="$HOME/bin:/bin:/usr/local/bin:/usr/bin:$PATH"
+    && PATH="$HOME/bin:/bin:/usr/local/bin:/usr/bin:$PATH:$HOME/.local/bin"
 BASHRC_HAS_RUN=1                  && export BASHRC_HAS_RUN
 
 #FIXME mksh has no shopt
