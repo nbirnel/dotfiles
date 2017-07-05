@@ -55,6 +55,11 @@ fi
 export GIT_PS1_SHOWDIRTYSTATE=1
 
 _prompt_command() {
+    if [ -n "$VIRTUAL_ENV" ]; then
+       _venv="${_SandyBrown} venv"
+    else 
+       _venv="$_off"
+    fi
     if test $? = 0; then
         _error="$_green"
     else
@@ -81,7 +86,7 @@ _prompt_command() {
 
     _time="$(date '+%H:%M %a %b %d')"
    #                                        user host        where        
-    PS1="$_ps_pref$_ssh$_magenta$_time $_blue\u@\h $_MistyRose\w$_git$(__git_ps1)$_untracked $_error\$\n$_off"
+    PS1="$_ps_pref$_ssh$_magenta$_time $_blue\u@\h $_MistyRose\w$_venv$_git$(__git_ps1)$_untracked $_error\$\n$_off"
 }
     
 #FIXME mksh has no PS1
