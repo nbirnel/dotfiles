@@ -8,7 +8,7 @@ umask 0022          # everyone can use my files by default!
 
 #FIXME not bashrc - profile?
 [ -z $BASHRC_HAS_RUN ] \
-    && PATH="$HOME/bin:/bin:/usr/local/bin:/usr/bin:$PATH:/usr/local/go/bin:$HOME/.local/bin"
+    && PATH="$HOME/bin:/bin:/usr/local/bin:/usr/bin:$PATH:/usr/local/go/bin:$HOME/.local/bin:$HOME/.cargo/bin"
 BASHRC_HAS_RUN=1                  && export BASHRC_HAS_RUN
 
 #FIXME mksh has no shopt
@@ -55,15 +55,17 @@ fi
 export GIT_PS1_SHOWDIRTYSTATE=1
 
 _prompt_command() {
-    if [ -n "$VIRTUAL_ENV" ]; then
-       _venv="${_SandyBrown} venv"
-    else 
-       _venv="$_off"
-    fi
+    # _error must be first; otherwise any other conditionals will bust it.
     if test $? = 0; then
         _error="$_green"
     else
         _error="$_red"
+    fi
+
+    if [ -n "$VIRTUAL_ENV" ]; then
+       _venv="${_SandyBrown} venv"
+    else 
+       _venv="$_off"
     fi
 
     _s="$(git status 2>/dev/null)"
@@ -140,12 +142,6 @@ type -p vim >/dev/null && export VISUAL=$(type -p vim)       && export VISUAL
 type -p firefox >/dev/null && export BROWSER=$(type -p firefox) && export BROWSER
 MAIL=/var/spool/mail/noah             && export export MAIL
 
-if [ -d /opt/plan9 ]; then
-    PLAN9=/opt/plan9 && export PLAN9 
-elif [ -d /usr/local/plan9 ]; then
-    PLAN9=/usr/local/plan9 && export PLAN9
-fi
-test -n $PLAN9 && PATH=$PATH:$PLAN9/bin
 test -d $HOME/.cabal/bin && PATH=$PATH:$HOME/.cabal/bin
 
 #FIXME mksh might not have this?
@@ -164,20 +160,8 @@ export HISTFILESIZE
 # semicolons
 shopt -s cmdhist
 
-# surfraw elvii
-PATH=$PATH:/usr/local/lib/surfraw
-
 # god I hate screen(1)
 SCREENDIR=$HOME/.screen; export SCREENDIR
-
-#nosql setenv overwrites path
-#eval $(nosql setenv) 
-TMPDIR=/tmp
-NOSQL_CHARSET=utf-8
-NOSQL_INSTALL=/usr/local/nosql
-SWU_INSTALL=/usr/local/swu
-PATH="$PATH:/usr/local/swu/bin:/usr/local/nosql/bin"
-export NOSQL_INSTALL SWU_INSTALL PATH TMPDIR NOSQL_CHARSET
 
 _BASH_CONFIGDIR="$HOME/.config/bash"
 _BASH_OS_CONFIGDIR="$_BASH_CONFIGDIR/osrc"
@@ -426,17 +410,6 @@ savehist() {
     export HISTFILE
 }
 
-authme() {
-    cat "$HOME"/.ssh/id_*sa.pub |\
-      ssh "$@" 'cat - >>"$HOME/.ssh/authorized_keys"'
-}
-
-githubclone() {
-    for i in "$@"; do
-        git clone git@github.com:nbirnel/"$i".git
-    done
-}
-
 # git hub command
 test -f $HOME/src/git-hub/init && . $HOME/src/git-hub/init
 
@@ -445,4 +418,8 @@ test -f $HOME/src/git-hub/init && . $HOME/src/git-hub/init
 export PATH
 set -o history
 
+complete -C /home/nbirnel/bin/terraform terraform
+
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+PATH=$PATH:$HOME/.cargo/bin
+
