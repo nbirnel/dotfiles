@@ -4,7 +4,7 @@
 #FIXME set has different opts in mksh
 unset MAILCHECK                 # no "You have mail in ..."
 
-umask 0022          # everyone can use my files by default!
+umask 0022          # everyone can use my files by default
 
 #FIXME not bashrc - profile?
 [ -z $BASHRC_HAS_RUN ] \
@@ -25,7 +25,7 @@ shopt -s checkwinsize
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
-# GNU dircolors. Will be called as appropriate in os / dist bashrc. No export!
+# GNU dircolors. Will be called as appropriate in os / dist bashrc. Do not export.
 DIRCS=$HOME/.dir_colors
 
 _off='\[\e[0m\]'
@@ -91,29 +91,6 @@ _prompt_command() {
     PS1="$_ps_pref$_ssh$_magenta$_time $_blue\u@\h $_MistyRose\w$_venv$_git$(__git_ps1)$_untracked $_error\$\n$_off"
 }
     
-#FIXME mksh has no PS1
-#FIXME make colors vars :
-# _magenta='\[\e[35m\]'
-# _time='\@'
-#case $TERM in 
-#	cons* )
-#        magenta  time date BLUE  user host  RED  directory    prompt  WHITE
-#	PS1="\[\e[35m\]\@ \d \[\e[34m\]\u@\h \[\e[31m\]\w\[\e[31m\]\n\$\[\e[37m\]"
-#	;;
-#	cygwin* )
-#        magenta  time date BLUE  user host  RED  directory    prompt  WHITE
-#	PS1="\[\e[35m\]\@ \d \[\e[34m\]\u@\h \[\e[31m\]\w\[\e[31m\]\n\$\[\e[37m\]"
-#	;;
-#	* )
-#        magenta  time date BLUE  user host  RED  directory    prompt  WHITE
-#	PS1="\[\e[35m\]\@ \d \[\e[34m\]\u@\h \[\e[31m\]\w\[\e[31m\]\n\$\[\e[37m\]"
-#        magenta  time date BLUE  user host  RED  directory    prompt  BLACK
-#	PS1="\[\e[35m\]\@ \d \[\e[34m\]\u@\h \[\e[31m\]\w\[\e[31m\]\n\$\[\e[30m\]"
-#	;;
-#esac
-
-#}
-
 PROMPT_COMMAND=_prompt_command
 
 # enable programmable completion features (you don't need to enable
@@ -127,14 +104,6 @@ if [ -f /usr/share/bash-completion/bash_completion ]; then
     . /usr/share/bash-completion/bash_completion
 fi
 
-# Needed this on Cent 7, but it breaks Ubuntu 14. 
-#for i in $(ls /etc/bash_completion.d/); do
-#    . /etc/bash_completion.d/$i
-#done
-
-#environmental variables
-
-#FIXME mksh type is an alias for whence - use which?
 type -p vim >/dev/null && export EDITOR=$(type -p vim)     && export EDITOR
 type -p vim >/dev/null && export GIT_EDITOR=$(type -p vim) && export GIT_EDITOR
 type -p less >/dev/null && export PAGER=$(type -p less)    && export PAGER
@@ -142,15 +111,10 @@ type -p vim >/dev/null && export VISUAL=$(type -p vim)       && export VISUAL
 type -p firefox >/dev/null && export BROWSER=$(type -p firefox) && export BROWSER
 MAIL=/var/spool/mail/noah             && export export MAIL
 
-test -d $HOME/.cabal/bin && PATH=$PATH:$HOME/.cabal/bin
-
-#FIXME mksh might not have this?
 HISTTIMEFORMAT='%y-%m-%d %H:%M '
 export HISTTIMEFORMAT
-HISTTIMEFORMAT='%y-%m-%d %H:%M '
-export HISTTIMEFORMAT
-HISTFILESIZE=50000
-export HISTFILESIZE
+export HISTFILESIZE=50000
+export HISTSIZE=10000
 
 #FIXME mksh has no shopt
 # something like this to save multiline commands
@@ -160,7 +124,6 @@ export HISTFILESIZE
 # semicolons
 shopt -s cmdhist
 
-# god I hate screen(1)
 SCREENDIR=$HOME/.screen; export SCREENDIR
 
 _BASH_CONFIGDIR="$HOME/.config/bash"
@@ -201,14 +164,9 @@ test -f "$_DISTRC" && . "$_DISTRC"
 test -f "$_OSRC" && . "$_OSRC"
 test -f "$_LOCALRC" && . "$_LOCALRC"
 
-alias vimrc='vim "$HOME/.bashrc"'
-alias vimrcd='vim "+set ft=sh" "$_DISTRC"'
-alias vimrco='vim "+set ft=sh" "$_OSRC"'
-alias vimrcl='vim "+set ft=sh" "$_LOCALRC"'
-
 # cd aliases
 
-# Because openSuse is has already aliases these.
+# Because openSuse is has already aliased these.
 unalias .. 2>/dev/null
 unalias ... 2>/dev/null
 ..() { 
@@ -253,156 +211,7 @@ unalias ... 2>/dev/null
     fi
 }
 
-alias gg='surfraw google'
-alias wp='surfraw wikipedia'
-
 alias info="info --vi-keys"
-
-c( ) {
-   # eg c .h.n = cd /home/noah/.
-   # not sure where I stole this from, but the original could
-   # only do absolute paths, take single letter abbreviations
-   # with no wildcards, and the regex stunk.
-   # 2011 12 02 added support for spaces, made portable to non-GNU
-   # sed.
-   dir="$@"
-
-   # Append * to non-dot sequences, change spaces to *, translate dots to / 
-   # and add
-   # final "/." to be sure this only matches a directory:
-   dirpat="$(echo $dir | sed 's#\([^.][^.]*\)#\1*#g; s/  */*/g' | tr . /)/."
-
-   # In case $dirpat is empty, set dummy "x" then shift it away:
-   set x $dirpat; shift
-
-   # Do the cd if we got one match, else print error:
-   if [ "$1" = "$dirpat" ]; then
-      # pattern didn't match (shell didn't expand it)
-      echo "c: no match for $dirpat" 1>&2
-   elif [ $# = 1 ]; then
-      cd "$1"
-   else
-      echo "c: too many matches for $dir:" 1>&2
-      ls -d "$@"
-   fi
-
-   unset dir dirpat
-}
-
-cm() {
-    if [ -n "$dest" ]; then
-        _tmp_dest="$dest"
-        _reset_dest=1
-    fi
-    
-    dest="$(mo $@)"
-    [ "$?" -ne 0 ] && unset dest && return 1
-    if [ -z "$dest" ]; then
-        echo "$@ is an empty mark."
-        unset dest
-        return 1
-    elif [ ! -d "$dest" ]; then
-        echo "$dest is not a directory."
-        unset dest
-        return 1
-    else
-        cd "$dest"
-    fi
-
-    unset dest
-    [ "$_reset_dest" ] && dest="$_tmp_dest" && unset _tmp_dest
-}
-
-shc() {
-    echo "scale=9;$@" | bc
-}
-
-
-#FIXME make dmenu or pick (from UPE) depending on [ -z "$DISPLAY" ]
-r() {
-    history | tail | sed 's/[-0-9: ]*//' | uniq | dmenu -l 10
-}
-
-h() {
-    history | sed 's/[-0-9: ]*//' | sort -u | dmenu -l 30
-}
-
-rx() {
-    $(r)
-}
-
-hx() {
-    $(h)
-}
-
-_follow_funs_helper() {
-    #FIXME this needs to return a correct exit status
-    #FIXME fails weirdly on carrybk spec-dirs-3rd-pass if no $OLDPWD
-    action=$1
-    shift
-    if [ $1 = back ]; then
-        _dest="$OLDPWD"
-        shift
-    elif [ $1 = last ]; then      #this ludicrous thing
-        shift                     #strips off the last arg.
-        argc=0
-
-        for arg; do
-            case $arg in 
-              *) eval arg_$argc=\$arg
-                 argc=$(expr $argc + 1)
-                 ;;
-            esac
-        done
-
-        eval "_dest=\${$#}"
-
-        shift $#
-        argc=$(expr $argc - 1)
-
-        while test $argc -gt 0; do
-            argc=$(expr $argc - 1)
-            eval 'set -- "$arg_'$argc'" "$@"'
-            unset arg_$argc
-        done
-    fi
-
-    $action "$@" "$_dest" && {
-        if [ -d "$_dest" ]; then
-            cd "$_dest"
-        else
-            #what is this sed thing? shouldn't we bail?
-            #anyway, ? and + are not portable.
-            #cd "$(echo "$_dest" | sed 's,[^/]\+/\?$,,')"
-            cd "$(echo "$_dest" | sed 's,[^/][^/]*/\{0,1\}$,,')"
-        fi
-    }
-    unset _dest
-}
-
-follow() {
-    _follow_funs_helper cp last "$@"
-}
-
-carry() {
-    _follow_funs_helper mv last "$@"
-}
-
-followbk() {
-    _follow_funs_helper cp back "$@"
-}
-
-carrybk() {
-    _follow_funs_helper mv back "$@"
-}
-
-cpbk() {
-    cp "$@" "$OLDPWD"
-}
-
-mvbk() {
-    mv "$@" "$OLDPWD"
-}
 
 #FIXME mksh won't have this
 savehist() {
@@ -410,16 +219,23 @@ savehist() {
     export HISTFILE
 }
 
-# git hub command
+complete -C /home/nbirnel/bin/vault vault
+complete -C /home/nbirnel/bin/terraform terraform
+
+PATH=$PATH:$HOME/.rvm/bin
+PATH=$PATH:$HOME/.cargo/bin
+
 test -f $HOME/src/git-hub/init && . $HOME/src/git-hub/init
+test -d $HOME/.cabal/bin && PATH=$PATH:$HOME/.cabal/bin
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/nbirnel/src/google-cloud-sdk/path.bash.inc' ]; then source '/home/nbirnel/src/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/nbirnel/src/google-cloud-sdk/completion.bash.inc' ]; then source '/home/nbirnel/src/google-cloud-sdk/completion.bash.inc'; fi
 
 #FIXME mksh won't use this?
 # reset this last so we don't get a bunch of bashrc in our history
 export PATH
 set -o history
-
-complete -C /home/nbirnel/bin/terraform terraform
-
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-PATH=$PATH:$HOME/.cargo/bin
 
