@@ -218,6 +218,29 @@ savehist() {
     HISTFILE="$HOME/.config/bash_history/$@"
     export HISTFILE
 }
+cm() {
+    if [ -n "$dest" ]; then
+        _tmp_dest="$dest"
+        _reset_dest=1
+    fi
+
+    dest="$(mo $@)"
+    [ "$?" -ne 0 ] && unset dest && return 1
+    if [ -z "$dest" ]; then
+        echo "$@ is an empty mark."
+        unset dest
+        return 1
+    elif [ ! -d "$dest" ]; then
+        echo "$dest is not a directory."
+        unset dest
+        return 1
+    else
+        cd "$dest"
+    fi
+
+    unset dest
+    [ "$_reset_dest" ] && dest="$_tmp_dest" && unset _tmp_dest
+}
 
 complete -C /home/nbirnel/bin/vault vault
 complete -C /home/nbirnel/bin/terraform terraform
