@@ -42,8 +42,6 @@ nnoremap <silent> <leader>sm :exe 'source ' machinefile <cr>
 set viminfo='100,<50,s10,h
 
 "" DISPLAY
-set scrolloff=1                  " keep a few lines of context when scrolling
-
 set number                       " duh
 set relativenumber               " show line numbers relative to .
 set cursorline                   " and highlight the current line
