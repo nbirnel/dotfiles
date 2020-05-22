@@ -273,6 +273,9 @@ augroup filetype_make
     autocmd FileType make setlocal noexpandtab
 augroup END
 
+                                 " YAML 2 space standard
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
                                  " Concordance dat files
 autocmd BufNewFile,BufRead *.dat setf dat 
 augroup filetype_dat
