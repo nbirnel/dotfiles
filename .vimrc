@@ -267,7 +267,7 @@ augroup filetype_vimscript
     autocmd FileType vim setlocal iskeyword+=#
 augroup END
 
-                                 " makefile syntax sucks
+                                 " makefile tabs
 augroup filetype_make
     autocmd!
     autocmd FileType make setlocal noexpandtab
