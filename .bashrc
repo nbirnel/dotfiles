@@ -251,6 +251,8 @@ PATH=$PATH:$HOME/.cargo/bin
 test -f $HOME/src/git-hub/init && . $HOME/src/git-hub/init
 test -d $HOME/.cabal/bin && PATH=$PATH:$HOME/.cabal/bin
 
+# Elixir / IEx
+export ERL_AFLAGS="-kernel shell_history enabled"
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/home/nbirnel/src/google-cloud-sdk/path.bash.inc' ]; then source '/home/nbirnel/src/google-cloud-sdk/path.bash.inc'; fi
 
