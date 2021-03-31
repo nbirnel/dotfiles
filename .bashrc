@@ -39,12 +39,14 @@ _cyan='\[\e[36;1m\]'
 _white='\[\e[37;1m\]'
 _contrast="$_white"
 
+# See https://gist.github.com/nbirnel/10b5f0903f5c6e7ee9dd189c204d1826
 _Chartreuse2='\[\e[38;5;112;1m\]'
 _Red3='\[\e[38;5;160;1m\]'
 _DeepPink1='\[\e[38;5;198;1m\]'
 _DarkOrange='\[\e[38;5;208;1m\]'
 _SandyBrown='\[\e[38;5;215;1m\]'
 _MistyRose='\[\e[38;5;224;1m\]'
+_DarkOliveGreen3='\[\e[38;5;113;1m\]'
 
 if test -n "$SSH_CONNECTION"; then
     _ssh="$_yellow($(echo $SSH_CONNECTION | awk '{ printf("%s->%s", $1, $3) }')) "
@@ -60,6 +62,12 @@ _prompt_command() {
         _error="$_green"
     else
         _error="$_red"
+    fi
+
+    if [ -n "$AWS_PROFILE" ]; then
+       _aws="${_DarkOliveGreen3} aws $AWS_PROFILE"
+    else 
+       _aws="$_off"
     fi
 
     if [ -n "$VIRTUAL_ENV" ]; then
@@ -88,7 +96,7 @@ _prompt_command() {
 
     _time="$(date '+%H:%M %a %b %d')"
    #                                        user host        where        
-    PS1="$_ps_pref$_ssh$_magenta$_time $_blue\u@\h $_MistyRose\w$_venv$_git$(__git_ps1)$_untracked $_error\$\n$_off"
+    PS1="$_ps_pref$_ssh$_magenta$_time $_blue\u@\h $_MistyRose\w$_aws$_venv$_git$(__git_ps1)$_untracked $_error\$\n$_off"
 }
     
 PROMPT_COMMAND=_prompt_command
@@ -248,7 +256,7 @@ complete -C /home/nbirnel/bin/terraform terraform
 PATH=$PATH:$HOME/.rvm/bin
 PATH=$PATH:$HOME/.cargo/bin
 
-test -f $HOME/src/git-hub/init && . $HOME/src/git-hub/init
+test -f $HOME/src/git-hub/.rc && . $HOME/src/git-hub/.rc
 test -d $HOME/.cabal/bin && PATH=$PATH:$HOME/.cabal/bin
 
 # Elixir / IEx
