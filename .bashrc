@@ -77,11 +77,11 @@ _prompt_command() {
     fi
 
     _s="$(git status 2>/dev/null)"
-    if printf "$_s" | grep '^Changes not staged for commit:$' >/dev/null 2>&1
+    if printf '%s' "$_s" | grep '^Changes not staged for commit:$' >/dev/null 2>&1
         then _git="$_Red3" && _untracked=''
-    elif printf "$_s" | grep '^Changes to be committed:$' >/dev/null 2>&1 
+    elif printf '%s' "$_s" | grep '^Changes to be committed:$' >/dev/null 2>&1 
         then _git="$_DarkOrange" && _untracked=''
-    elif printf "$_s" | grep '^nothing added to commit but untracked files present' >/dev/null 2>&1 
+    elif printf '%s' "$_s" | grep '^nothing added to commit but untracked files present' >/dev/null 2>&1 
         then _git="$_Chartreuse2" && _untracked="${_DarkOrange}+"
     else
         _git="$_Chartreuse2" && _untracked=''
